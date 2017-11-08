@@ -20,6 +20,7 @@ public class SpaceShipShooting : MonoBehaviour {
     
     void shootBullet() {
         Vector3 offset = new Vector3(0.8f,0f,0f);
+        BulletMovement bm = bullet.GetPooledInstance<BulletMovement>(); 
         Instantiate(bullet, this.transform.position + offset, Quaternion.identity);
     }
     

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BulletMovement : MonoBehaviour {
+public class BulletMovement : PooledObject {
 
     public Vector3 speed;
     public Vector3 direction;

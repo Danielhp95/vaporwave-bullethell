@@ -19,19 +19,41 @@ public class SpaceShipInput : MonoBehaviour {
 	}
     
     void handleMovement() {
-        //Deal with rotation first
-        float rotationSpeed = 200f;
-        Vector2 speed = new Vector2( 0f, 10.0F);
-		float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
-		rotation *= Time.deltaTime;
-		transform.Rotate(0, 0 , -rotation);
+        Vector2 speedH = new Vector2(0,10);
+        Vector2 speedV = new Vector2(-10,0);
+        Vector2 translation;
         
 		//Translation is an special case, only occurs if the player wants to go up!
-		if( Input.GetAxis("Vertical") > 0 ){
-			Vector2 translation = Input.GetAxis("Vertical") * speed;
+		if(Input.GetKey(KeyCode.D)){
+			translation = Input.GetAxis("Horizontal") * speedH;
 			translation *= Time.deltaTime;
 			spaceshipBody.AddRelativeForce(translation, ForceMode2D.Impulse);
 		}
+        if(Input.GetKey(KeyCode.A)){
+			translation = Input.GetAxis("Horizontal") * speedH;
+			translation *= Time.deltaTime;
+			spaceshipBody.AddRelativeForce(translation, ForceMode2D.Impulse);
+		}
+        
+        if(Input.GetKey(KeyCode.S)){
+			translation = Input.GetAxis("Vertical") * speedV;
+			translation *= Time.deltaTime;
+			spaceshipBody.AddRelativeForce(translation, ForceMode2D.Impulse);
+		}
+        
+        if(Input.GetKey(KeyCode.W)){
+			translation = Input.GetAxis("Vertical") * speedV;
+			translation *= Time.deltaTime;
+			spaceshipBody.AddRelativeForce(translation, ForceMode2D.Impulse);
+		}
+        /*
+        else if( Input.GetAxis("Horizontal") > 0 ){
+			Vector2 translationH = Input.GetAxis("Horizontal") * speed;
+			translation *= Time.deltaTime;
+			spaceshipBody.AddRelativeForce(translationH, ForceMode2D.Impulse);
+		}
+        */
+        
     }
     
     void handleShooting() {

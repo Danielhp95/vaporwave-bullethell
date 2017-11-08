@@ -8,12 +8,10 @@ public class CameraMovements : MonoBehaviour {
 	public Vector3 defaultPositions = new Vector3(0f, 0f, -9f);
 	public Vector3 postionWidths = new Vector3(1.25f, 0.625f, 0.125f);
 
-	public float rotationSpeed = 0.7f;
+	public float rotationSpeed = 0.5f;
 	public Vector3 rotationDirection = new Vector3(0f, 0f, 0f);
 	public Vector3 defaultRotations = new Vector3(0f, 0f, 0f);
-	public Vector3 rotationWidths = new Vector3(5f, 5f, 5f);
-
-	private bool isNetherWorld = false;
+	public Vector3 rotationWidths = new Vector3(3f, 3f, 3f);
 	 
 	// Use this for initialization
 	void Start () {
@@ -30,9 +28,11 @@ public class CameraMovements : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		translateCamera (transform.position, scaleVector(spaceDirection, spaceSpeed));
+		Vector3 translation = transformCamera (transform.position, scaleVector(spaceDirection, spaceSpeed), true);
+		transform.Translate(translation, Space.World);
 		Vector3 eulerAngles = getNegativeAngles(transform.eulerAngles);
-		rotateCamera (eulerAngles, scaleVector(rotationDirection, rotationSpeed));
+		Vector3 rotation = transformCamera (eulerAngles, scaleVector(rotationDirection, rotationSpeed), false);
+		transform.Rotate (rotation);
 	}
 
 	private Vector3 getNegativeAngles (Vector3 eulerAngles) {
@@ -42,23 +42,15 @@ public class CameraMovements : MonoBehaviour {
 		return new Vector3 (x, y, z);
 	}
 
-	private void translateCamera(Vector3 currentPosition, Vector3 scaledDirection) {
+	private Vector3 transformCamera(Vector3 currentPosition, Vector3 scaledDirection, bool isSpace) {
 		Vector3 newPosition = getNewPosition (currentPosition, scaledDirection);
-		Vector3 internalPostion = makePositionInternal (newPosition, defaultPositions, postionWidths, true);
+		Vector3 internalPostion = makePositionInternal (newPosition, isSpace);
 		float xMovement = internalPostion.x - currentPosition.x;
 		float yMovement = internalPostion.y - currentPosition.y;
 		float zMovement = internalPostion.z - currentPosition.z;
-		transform.Translate(xMovement, yMovement, zMovement, Space.World);
-	}
 
-	private void rotateCamera(Vector3 currentPosition, Vector3 scaledDirection) {
-		Vector3 newPosition = getNewPosition (currentPosition, scaledDirection);
-		Vector3 internalPostion = makePositionInternal (newPosition, defaultRotations, rotationWidths, false);
 
-		float xMovement = internalPostion.x - currentPosition.x;
-		float yMovement = internalPostion.y - currentPosition.y;
-		float zMovement = internalPostion.z - currentPosition.z;
-		transform.Rotate(xMovement, yMovement, zMovement);
+		return new Vector3 (xMovement, yMovement, zMovement);
 	}
 
 	private Vector3 scaleVector (Vector3 vector, float targetSpeed){
@@ -80,10 +72,13 @@ public class CameraMovements : MonoBehaviour {
 		);
 	}
 
-	private Vector3 makePositionInternal(Vector3 newPosition, Vector3 defaultPositions, Vector3 widths, bool isSpace) {
+	private Vector3 makePositionInternal(Vector3 newPosition, bool isSpace) {
 		float newX = newPosition.x;
 		float newY = newPosition.y;
 		float newZ = newPosition.z;
+
+		Vector3 defaultPositions = isSpace ? this.defaultPositions : this.defaultRotations;
+		Vector3 widths = isSpace ? this.postionWidths : this.rotationWidths;
 
 		if (Mathf.Abs(newX) - defaultPositions.x > widths.x) {
 			newX = getInternalPoint (newX, widths.x, defaultPositions.x);
@@ -130,9 +125,5 @@ public class CameraMovements : MonoBehaviour {
 		} else {
 			rotationDirection = new Vector3 (rotationDirection.x, rotationDirection.y, -rotationDirection.z);
 		}
-	}
-
-	private void toggleNetherWorld() {
-		isNetherWorld = !isNetherWorld;
 	}
 }

@@ -49,7 +49,7 @@ public class TimeManager : MonoBehaviour
     }
 
     private bool checkRewindCondition() {
-        return Input.GetKeyDown(KeyCode.Space);
+        return Input.GetKeyDown(KeyCode.R);
     }
 
     private void setInitialConditions() {
@@ -57,9 +57,9 @@ public class TimeManager : MonoBehaviour
         setFrameRate(vcrFrameRate);
 
         // For all objects
-        Rigidbody2D shipBody = ship.GetComponent<Rigidbody2D>();
+        Rigidbody shipBody = ship.GetComponent<Rigidbody>();
         shipBody.velocity = Vector3.zero;
-        shipBody.angularVelocity = 0f;
+        shipBody.angularVelocity = Vector3.zero;
 
         // Reset stored positions
         spaceshipPositions.Clear();        

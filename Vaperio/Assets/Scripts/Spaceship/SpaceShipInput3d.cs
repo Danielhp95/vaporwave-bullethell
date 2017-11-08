@@ -15,8 +15,6 @@ public class SpaceShipInput3d : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         handleMovement();
-        handleShooting();
-		
 	}
 
 
@@ -38,15 +36,4 @@ public class SpaceShipInput3d : MonoBehaviour {
             spaceshipBody.AddRelativeForce(translation, ForceMode.Impulse);
         }
     }
-
-    void handleShooting() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            shootBullet();
-        }
-    }
-    
-    void shootBullet() {
-        
-    }
-    
 }

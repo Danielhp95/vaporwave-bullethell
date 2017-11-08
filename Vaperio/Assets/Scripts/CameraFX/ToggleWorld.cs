@@ -8,15 +8,19 @@ public class ToggleWorld : MonoBehaviour {
 	private bool togglingWorld = false;
 	private bool returning = false;
 	private float startingPosition = -9f;
+	private AmbientCameraMovements ambientCameraMovements;
 
 	// Use this for initialization
 	void Start () {
+		GameObject camera = GameObject.Find ("Main Camera");
+		ambientCameraMovements = camera.GetComponent<AmbientCameraMovements> ();
 	}
 
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			togglingWorld = true;
+			ambientCameraMovements.toggleTogglingWorlds ();
 		}
 		if (togglingWorld) {
 			accelerate ();
@@ -24,7 +28,6 @@ public class ToggleWorld : MonoBehaviour {
 			checkForReverse ();
 			if (returning) {
 				checkForEnd ();
-
 			}
 		}
 	}
@@ -51,6 +54,7 @@ public class ToggleWorld : MonoBehaviour {
 			togglingWorld = false;
 			returning = false;
 			returnToPosition ();
+			ambientCameraMovements.toggleTogglingWorlds ();
 		}
 	}
 

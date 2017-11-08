@@ -6,6 +6,7 @@ public class ToggleWorld : MonoBehaviour {
 	private float acceleration = 0.1f;
 	private float speed = 0f;
 	private bool togglingWorld = false;
+	private bool returning = false;
 	private float startingPosition = -9f;
 
 	// Use this for initialization
@@ -21,7 +22,10 @@ public class ToggleWorld : MonoBehaviour {
 			accelerate ();
 			move ();
 			checkForReverse ();
-			checkForEnd ();
+			if (returning) {
+				checkForEnd ();
+
+			}
 		}
 	}
 
@@ -37,13 +41,15 @@ public class ToggleWorld : MonoBehaviour {
 		if (transform.position.z > 0f) {
 			speed = -speed;
 			transform.Translate (0f, 0f, -2 * transform.position.z);
+			returning = true;
 		}
 	}
 
 	private void checkForEnd() {
-		if (transform.position.z < startingPosition) {
+		if (transform.position.z < startingPosition || speed > 0) {
 			speed = 0;
 			togglingWorld = false;
+			returning = false;
 			returnToPosition ();
 		}
 	}

@@ -25,10 +25,8 @@ public class SpaceShipInput3d : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         handleMovement();
-        handleShooting();
         lagInd = lagInd + 1;
         if(lagInd == lagCount){lagInd = 0;} 
-		
 	}
 
 
@@ -53,15 +51,4 @@ public class SpaceShipInput3d : MonoBehaviour {
             spaceshipBody.AddRelativeForce(translation, ForceMode.Impulse);
         }
     }
-
-    void handleShooting() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            shootBullet();
-        }
-    }
-    
-    void shootBullet() {
-        
-    }
-    
 }

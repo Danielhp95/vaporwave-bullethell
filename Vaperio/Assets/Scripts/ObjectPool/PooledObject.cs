@@ -5,9 +5,9 @@ public class PooledObject : MonoBehaviour {
     public ObjectPool Pool { get; set; }
 
     [System.NonSerialized]
-    ObjectPool poolInstanceForPrefab;
+    private ObjectPool poolInstanceForPrefab;
 
-    public void ReturnToPool () {
+    protected void ReturnToPool () {
         if (Pool) {
             Pool.AddObject(this);
         } else {
@@ -15,11 +15,17 @@ public class PooledObject : MonoBehaviour {
         }
     }
 
-    public T getPooledInstance<T>() where T: PooledObject {
+    public T GetPooledInstance<T>(Vector3 position, Quaternion rotation) where T: PooledObject {
         if (!poolInstanceForPrefab) {
             poolInstanceForPrefab = ObjectPool.GetPool(this);
         }
-        return (T)poolInstanceForPrefab.GetObject();
+        return (T)poolInstanceForPrefab.GetObject(position, rotation);
+    }
+
+    public void OnTriggerEnter(Collider collider) {
+        if (collider.CompareTag("Boundary")) {
+            ReturnToPool();
+        }
     }
 
 }

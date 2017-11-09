@@ -6,7 +6,7 @@ public class ObjectPool : MonoBehaviour {
     PooledObject prefab;
     List<PooledObject> availableObjects = new List<PooledObject>();
 
-    public PooledObject GetObject() {
+    public PooledObject GetObject(Vector3 position, Quaternion rotation) {
         PooledObject obj; 
         int lastAvailableIndex = availableObjects.Count - 1;
         if (lastAvailableIndex >= 0) {
@@ -18,6 +18,13 @@ public class ObjectPool : MonoBehaviour {
             obj.transform.SetParent(transform, false);
             obj.Pool = this;
         }
+        obj = SetTransformInformation(obj, position, rotation);
+        return obj;
+    }
+
+    private PooledObject SetTransformInformation(PooledObject obj, Vector3 position, Quaternion rotation) {
+        obj.transform.position = position;
+        obj.transform.rotation = rotation;
         return obj;
     }
 

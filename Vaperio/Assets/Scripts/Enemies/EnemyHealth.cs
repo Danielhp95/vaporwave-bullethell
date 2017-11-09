@@ -22,12 +22,25 @@ public class EnemyHealth : MonoBehaviour {
     
     void OnTriggerEnter(Collider other) {
         if(other.gameObject.layer==10){
+            BulletMovement bullet =  other.GetComponent<BulletMovement>();
+            ApplyDamage(bullet.bulletDamage);
             Destroy(other.gameObject);
-            Destroy(this.gameObject);
         }
     }
     
+    private void ApplyDamage (int damage){
+        currentHealth -= damage;
+        CheckForDeath();
+    }
     
+    private void CheckForDeath() {
+        if(currentHealth <= 0){
+            Destroy(this.gameObject);
+         }
+     }
+        
+        
+}
 
     
-}
+

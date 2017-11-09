@@ -40,6 +40,8 @@ public class SpaceShipInput3d : MonoBehaviour {
         Vector3 speedZ = new Vector3(0, 0, DepthAcceleration);
         Vector3 translation;
         hInputLag[lagIndex]=0.0f; //comment for crazy effect
+
+		setDrag ();
     
         if(Input.GetAxis("Horizontal") != 0){
             hInputLag[lagIndex]=Input.GetAxis("Horizontal");
@@ -56,6 +58,11 @@ public class SpaceShipInput3d : MonoBehaviour {
         }
 		applyMaxSpeed ();
     }
+
+	private void setDrag () {
+		float speed = spaceshipBody.velocity.magnitude;
+		spaceshipBody.drag = Mathf.Max (Mathf.Pow (speed, 3), 0.5f);
+	}
 
 	private void applyMaxSpeed() {
 		Vector3 newVelocity = spaceshipBody.velocity;

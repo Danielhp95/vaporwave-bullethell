@@ -6,13 +6,11 @@ public class SpaceShipInput3d : MonoBehaviour {
     
     private Rigidbody spaceshipBody;
     public float VerticalSpeed = 10.0f, HorizontalSpeed=10.0f, DepthSpeed=10.0f;
-    public int lagDur = 10;
-    private int lagInd = 0, lagCount;
     private float[] hInputLag;
 	public float verticalForce = 7f;
 	public float horizontalForce = 7f;
 	public float depthForce = 10f;
-    public int lagDuration = 20;
+    public int lagDuration = 20, lagDur=10, lagInd=0;
 	private int lagIndex = 0, lagCount;
     private Vector2[] pastInputs;
 	private float maxSpeed = 2f;
@@ -49,7 +47,7 @@ public class SpaceShipInput3d : MonoBehaviour {
         Vector3 speedV = new Vector3(-1.0f*(VerticalSpeed),0,0);
         Vector3 speedZ = new Vector3(0,0,DepthSpeed);
         Vector3 translation;
-        hInputLag[lagInd]=0.0f; //comment for crazy effect
+        //hInputLag[lagInd]=0.0f; //comment for crazy effect
 		setDrag ();
 		getCurrentInput ();
 
@@ -85,18 +83,5 @@ public class SpaceShipInput3d : MonoBehaviour {
 		}
 	}
     
-        if(Input.GetAxis("Horizontal") != 0){
-            hInputLag[lagInd]=Input.GetAxis("Horizontal");
-            translation = hInputLag[lagCount-lagInd] * speedH;
-            translation *= Time.deltaTime;
-            spaceshipBody.AddRelativeForce(translation, ForceMode.Impulse);
-        }
         
-        if(Input.GetAxis("Vertical") != 0){
-            hInputLag[lagInd]=Input.GetAxis("Vertical");
-            translation = hInputLag[lagCount-lagInd] * speedV;
-            translation *= Time.deltaTime;
-            spaceshipBody.AddRelativeForce(translation, ForceMode.Impulse);
-        }
-    }
 }

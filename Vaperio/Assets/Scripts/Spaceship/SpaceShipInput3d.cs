@@ -5,22 +5,22 @@ using UnityEngine;
 public class SpaceShipInput3d : MonoBehaviour {
     
     private Rigidbody spaceshipBody;
-	public float VerticalAcceleration = 7f;
-	public float HorizontalAcceleration = 7f;
-	public float DepthAcceleration = 10f;
-    public int lagDuration = 10;
+	public float verticalForce = 7f;
+	public float horizontalForce = 7f;
+	public float depthForce = 10f;
+    public int lagDuration = 20;
 	private int lagIndex = 0, lagCount;
-    private float[] hInputLag;
+    private Vector2[] pastInputs;
 	private float maxSpeed = 2f;
     
 
 	// Use this for initialization
 	void Start () {
 		this.spaceshipBody = GetComponent<Rigidbody>();
-        this.hInputLag = new float[lagDuration];
+        this.pastInputs = new Vector2[lagDuration];
         this.lagCount = lagDuration-1;
         for(int i=0; i < lagDuration; i = i+1){
-            hInputLag[i]=0.0f;
+			pastInputs[i]= new Vector2(0f, 0f);
         }        
 	}
 	
@@ -35,29 +35,29 @@ public class SpaceShipInput3d : MonoBehaviour {
 
 
     void handleMovement() {
-		Vector3 speedH = new Vector3(0, -1f * HorizontalAcceleration, 0);
-        Vector3 speedV = new Vector3(VerticalAcceleration, 0, 0);
-        Vector3 speedZ = new Vector3(0, 0, DepthAcceleration);
-        Vector3 translation;
-        hInputLag[lagIndex]=0.0f; //comment for crazy effect
-
 		setDrag ();
     
-        if(Input.GetAxis("Horizontal") != 0){
-            hInputLag[lagIndex]=Input.GetAxis("Horizontal");
-            translation = hInputLag[lagCount-lagIndex] * speedV;
-            translation *= Time.deltaTime;
-            spaceshipBody.AddRelativeForce(translation, ForceMode.Impulse);
-        }
-        
-        if(Input.GetAxis("Vertical") != 0){
-            hInputLag[lagIndex]=Input.GetAxis("Vertical");
-            translation = hInputLag[lagCount-lagIndex] * speedH;
-            translation *= Time.deltaTime;
-            spaceshipBody.AddRelativeForce(translation, ForceMode.Impulse);
-        }
+		getCurrentInput ();
+
+		applyPastInputs ();
+
 		applyMaxSpeed ();
-    }
+	}
+
+	private void getCurrentInput() {
+		pastInputs[lagIndex] = new Vector2 (Input.GetAxis("Horizontal"), Input.GetAxis ("Vertical"));
+	}
+
+	private void applyPastInputs() {
+		Vector2 pastInput = pastInputs[lagCount-lagIndex];
+
+		Vector3 force = new Vector3 (pastInput.x * horizontalForce, pastInput.y * verticalForce * -1f);
+
+		force *= Time.deltaTime;
+
+		spaceshipBody.AddRelativeForce(force, ForceMode.Impulse);
+
+	}
 
 	private void setDrag () {
 		float speed = spaceshipBody.velocity.magnitude;

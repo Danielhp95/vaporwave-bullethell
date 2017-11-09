@@ -1,10 +1,11 @@
 using UnityEngine;
+using System;
 using System.Collections.Generic;
 
 public class TimeManager : MonoBehaviour 
 {
     public GameObject ship;
-    private List<TransformData> spaceshipPositions;
+    private List<Frame> recordedFrames;
 
     private int vcrFrameRate = 30;
    
@@ -16,7 +17,8 @@ public class TimeManager : MonoBehaviour
         setFrameRate(vcrFrameRate);
 
         // Initialize variables
-        spaceshipPositions = new List<TransformData>();
+        recordedFrames = new List<Frame>();
+        recordedFrames.Add(new Frame());
     }
 
     void Start() {
@@ -26,30 +28,43 @@ public class TimeManager : MonoBehaviour
     void Update() {
        if (checkRewindCondition()) {
            isRewinding = true; 
-           rewindFrameIndex = spaceshipPositions.Count - 1;
+           rewindFrameIndex = recordedFrames.Count - 1;
            setFrameRate(vcrFrameRate * 2);
        }
        if (isRewinding) {
 
-           ship.transform.position = spaceshipPositions[rewindFrameIndex].position;
-           ship.transform.rotation = spaceshipPositions[rewindFrameIndex].rotation;
+           bool hasRewindFinished = Rewind(0, rewindFrameIndex);
 
            rewindFrameIndex -= 1;
 
-           if (rewindFrameIndex == 0) {
+           if (hasRewindFinished) {
                setInitialConditions();
            }
        } else {
-           TransformData td = new TransformData();
-           td.position = ship.transform.position;
-           td.rotation = ship.transform.rotation;
-           spaceshipPositions.Add(td);   
+           // Record information, obsolete
+           addFrameItemToLatestFrame(ship.transform.position, ship.transform.rotation, "Player");
        }
 
     }
 
-    private bool checkRewindCondition() {
-        return Input.GetKeyDown(KeyCode.R);
+    void LateUpdate() {
+        recordedFrames.Add(new Frame());
+    }
+
+    private bool Rewind(int targetFrame, int rewindFrameIndex) {
+        bool hasRewindFinished = targetFrame == rewindFrameIndex;
+        if (!hasRewindFinished) { 
+            RewindOneFrame(targetFrame, rewindFrameIndex);
+        }
+        return hasRewindFinished; 
+    }
+
+    private void RewindOneFrame(int endFrame, int rewindFrameIndex) {
+        foreach (FrameItem fi in recordedFrames[rewindFrameIndex].frameEntities) {
+            GameObject go = retrieveItem(fi.id);
+            go.transform.position = fi.transformData.position;
+            go.transform.rotation = fi.transformData.rotation;
+        }
     }
 
     private void setInitialConditions() {
@@ -62,8 +77,18 @@ public class TimeManager : MonoBehaviour
         shipBody.angularVelocity = Vector3.zero;
 
         // Reset stored positions
-        spaceshipPositions.Clear();        
+        recordedFrames.Clear();
        
+    }
+
+    public void addFrameItemToLatestFrame(Vector3 position, Quaternion rotation, String tag) {
+        TransformData tfd = new TransformData(); tfd.position = position; tfd.rotation = rotation;
+        FrameItem newFrameItem = new FrameItem(); newFrameItem.transformData = tfd; newFrameItem.id = tag;
+        recordedFrames[recordedFrames.Count - 1].AddFrameItem(newFrameItem);
+    }
+
+    private bool checkRewindCondition() {
+        return Input.GetKeyDown(KeyCode.R);
     }
 
     private void setFrameRate(int targetFrameRate) {
@@ -73,10 +98,30 @@ public class TimeManager : MonoBehaviour
         Application.targetFrameRate = targetFrameRate;
     }
 
+    private GameObject retrieveItem(String s) {
+        return ship;
+    }
+
 }
 
-public struct TransformData
-{
+public class Frame {
+    public List<FrameItem> frameEntities{ get; private set;}
+
+    public Frame() {
+        frameEntities = new List<FrameItem>();
+    }
+
+    public void AddFrameItem(FrameItem fi) {
+        frameEntities.Add(fi);
+    }
+}
+
+public struct FrameItem {
+    public TransformData transformData;
+    public String id; // tag
+}
+
+public struct TransformData {
     public Vector3 position;
     public Quaternion rotation;
 }

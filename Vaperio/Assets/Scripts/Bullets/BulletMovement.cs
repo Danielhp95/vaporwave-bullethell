@@ -14,11 +14,12 @@ public class BulletMovement : PooledObject {
     }
 
     void Update() {
-        if (framesToLive == 0) {
+        if (framesToLive <= 0 ) {
             framesToLive = 10;
             this.ReturnToPool();
+        } else {
+            framesToLive -= 1;
         }
-        framesToLive -= 1;
         this.transform.position += Vector3.Project(this.speed, this.direction.normalized) * 
                                   Time.deltaTime;
     }

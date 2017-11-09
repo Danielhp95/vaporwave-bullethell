@@ -33,22 +33,22 @@ public class SpaceShipInput3d : MonoBehaviour {
 
 
     void handleMovement() {
-        Vector3 speedH = new Vector3(0,HorizontalSpeed,0);
-        Vector3 speedV = new Vector3(-1.0f*(VerticalSpeed),0,0);
-        Vector3 speedZ = new Vector3(0,0,DepthSpeed);
+        Vector3 speedH = new Vector3(0, HorizontalSpeed, 0);
+        Vector3 speedV = new Vector3((VerticalSpeed), 0, 0);
+        Vector3 speedZ = new Vector3(0, 0, DepthSpeed);
         Vector3 translation;
         hInputLag[lagInd]=0.0f; //comment for crazy effect
     
         if(Input.GetAxis("Horizontal") != 0){
             hInputLag[lagInd]=Input.GetAxis("Horizontal");
-            translation = hInputLag[lagCount-lagInd] * speedH;
+            translation = hInputLag[lagCount-lagInd] * speedV;
             translation *= Time.deltaTime;
             spaceshipBody.AddRelativeForce(translation, ForceMode.Impulse);
         }
         
         if(Input.GetAxis("Vertical") != 0){
             hInputLag[lagInd]=Input.GetAxis("Vertical");
-            translation = hInputLag[lagCount-lagInd] * speedV;
+            translation = hInputLag[lagCount-lagInd] * speedH;
             translation *= Time.deltaTime;
             spaceshipBody.AddRelativeForce(translation, ForceMode.Impulse);
         }

@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114971846936735718}
   m_Layer: 0
   m_Name: spaceship3D
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce8275d4179014d81960fd2cd15d719b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 1760269873765088, guid: adb7644c79a264196920d30b7a9ea3b7, type: 2}
+  bullet: {fileID: 0}
 --- !u!212 &212541370730259136
 SpriteRenderer:
   m_ObjectHideFlags: 1

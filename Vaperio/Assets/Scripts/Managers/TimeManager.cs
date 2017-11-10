@@ -4,19 +4,20 @@ using System.Collections.Generic;
 
 public class TimeManager : MonoBehaviour 
 {
-    public GameObject ship;
-    private List<Frame> recordedFrames;
-
     private int vcrFrameRate = 30;
    
-    private bool isRewinding = false;
+    public bool isRewinding { get; private set;}
+    private List<Frame> recordedFrames;
     private int rewindFrameIndex;
+    private List<TimeManageable> deleteOnNextRewindFrame;
 
     void Awake() {
         // Set framerate
         setFrameRate(vcrFrameRate);
 
         // Initialize variables
+        isRewinding = false;
+        deleteOnNextRewindFrame = new List<TimeManageable>();
         recordedFrames = new List<Frame>();
         recordedFrames.Add(new Frame());
     }
@@ -33,37 +34,52 @@ public class TimeManager : MonoBehaviour
        }
        if (isRewinding) {
 
-           bool hasRewindFinished = Rewind(0, rewindFrameIndex);
-
+           bool hasRewindFinished = HandleRewind(0, rewindFrameIndex);
            rewindFrameIndex -= 1;
 
            if (hasRewindFinished) {
                setInitialConditions();
            }
-       } else {
-           // Record information, obsolete
-           addFrameItemToLatestFrame(ship.transform.position, ship.transform.rotation, "Player");
        }
-
     }
 
     void LateUpdate() {
         recordedFrames.Add(new Frame());
     }
 
-    private bool Rewind(int targetFrame, int rewindFrameIndex) {
+    private bool HandleRewind(int targetFrame, int rewindFrameIndex) {
         bool hasRewindFinished = targetFrame == rewindFrameIndex;
         if (!hasRewindFinished) { 
-            RewindOneFrame(targetFrame, rewindFrameIndex);
+            Frame previousFrame = this.recordedFrames[rewindFrameIndex];
+            print(previousFrame.frameEntities.Count);
+            RewindOneFrame(previousFrame);
+            DeleteEntitiesCreatedLastFrame();
+            this.deleteOnNextRewindFrame.Clear();
         }
         return hasRewindFinished; 
     }
 
-    private void RewindOneFrame(int endFrame, int rewindFrameIndex) {
-        foreach (FrameItem fi in recordedFrames[rewindFrameIndex].frameEntities) {
-            GameObject go = retrieveItem(fi.id);
-            go.transform.position = fi.transformData.position;
-            go.transform.rotation = fi.transformData.rotation;
+    private void RewindOneFrame(Frame frame) {
+        foreach (FrameItem fi in frame.frameEntities) {
+            TimeManageable tm = fi.item;
+            tm.gameObject.SetActive(true);
+            tm.transform.position = fi.transformData.position;
+            tm.transform.rotation = fi.transformData.rotation;
+
+            if (fi.deactivateAfterThisFrame) {
+                this.deleteOnNextRewindFrame.Add(tm);
+            }
+        }
+    }
+
+    private void DeleteEntitiesCreatedLastFrame() {
+        foreach (TimeManageable tm in this.deleteOnNextRewindFrame) {
+            if (tm is PooledObject) {
+                //tm.ReturnToPool();
+            } else {
+                tm.gameObject.SetActive(false);
+            }
+            tm.resetCreation();
         }
     }
 
@@ -72,18 +88,28 @@ public class TimeManager : MonoBehaviour
         setFrameRate(vcrFrameRate);
 
         // For all objects
-        Rigidbody shipBody = ship.GetComponent<Rigidbody>();
-        shipBody.velocity = Vector3.zero;
-        shipBody.angularVelocity = Vector3.zero;
+        StopPlayerMovement();
 
         // Reset stored positions
         recordedFrames.Clear();
+        recordedFrames.Add(new Frame());
+        deleteOnNextRewindFrame.Clear();
        
     }
 
-    public void addFrameItemToLatestFrame(Vector3 position, Quaternion rotation, String tag) {
+    private void StopPlayerMovement() {
+        Rigidbody player = GameObject.FindWithTag("Player").GetComponent<Rigidbody>();
+        player.velocity = Vector3.zero;
+        player.angularVelocity = Vector3.zero;
+    }
+
+    public void addFrameItemToLatestFrame(Vector3 position, Quaternion rotation,
+                                          bool deactivateAfterThisFrame, TimeManageable item) {
         TransformData tfd = new TransformData(); tfd.position = position; tfd.rotation = rotation;
-        FrameItem newFrameItem = new FrameItem(); newFrameItem.transformData = tfd; newFrameItem.id = tag;
+        FrameItem newFrameItem = new FrameItem(); newFrameItem.transformData = tfd;
+        newFrameItem.deactivateAfterThisFrame = deactivateAfterThisFrame;
+        newFrameItem.item = item;
+        if (recordedFrames.Count == 0) { print("Upsie"); }
         recordedFrames[recordedFrames.Count - 1].AddFrameItem(newFrameItem);
     }
 
@@ -96,10 +122,6 @@ public class TimeManager : MonoBehaviour
             QualitySettings.vSyncCount = 0; 
         }
         Application.targetFrameRate = targetFrameRate;
-    }
-
-    private GameObject retrieveItem(String s) {
-        return ship;
     }
 
 }
@@ -118,7 +140,10 @@ public class Frame {
 
 public struct FrameItem {
     public TransformData transformData;
-    public String id; // tag
+
+    public bool deactivateAfterThisFrame;
+
+    public TimeManageable item;
 }
 
 public struct TransformData {

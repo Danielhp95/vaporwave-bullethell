@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpaceShipHealth : MonoBehaviour {
     
     public  int startingHealth = 30;
-    private int currentHealth;
+    public int currentHealth;
     private Color damageColor = new Color(255f,255f,255f, 1f);
     private SpriteRenderer spaceshipRenderer;
 

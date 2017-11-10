@@ -28,7 +28,8 @@ public class Ralph : MonoBehaviour {
 	}
     
     void shootBullet() {
-        Vector3 offset = new Vector3(-0.8f,0f,0f); 
-		Instantiate(bullet, this.transform.position + offset, foreground.rotation, foreground);
+        Vector3 offset = new Vector3(0.8f,0f,0f);
+        GameObject newBullet = Instantiate(bullet, this.transform.position, foreground.rotation, foreground);
+        newBullet.transform.Translate(offset);	
     }
 }

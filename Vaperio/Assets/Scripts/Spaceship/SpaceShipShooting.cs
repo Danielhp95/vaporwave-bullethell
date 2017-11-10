@@ -22,14 +22,11 @@ public class SpaceShipShooting : MonoBehaviour {
     
     private void shootBullet() {
 		Vector3 offset = getOffset();
-        Instantiate(bullet, this.transform.position + offset, foreground.rotation, foreground);
+        GameObject newBullet = Instantiate(bullet, this.transform.position, foreground.rotation, foreground);
+        newBullet.transform.Translate(offset);
     }
     
 	private Vector3 getOffset() {
-		Vector3 offset =  new Vector3(0.8f,0f,0f);
-		if (!foreground.eulerAngles.y.Equals(defaultYRotation)) {
-			offset.x = -offset.x;
-		}
-		return offset;
+		return new Vector3(-0.8f,0f,0f);
 	}
 }

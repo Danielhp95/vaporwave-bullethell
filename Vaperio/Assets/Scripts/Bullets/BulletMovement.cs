@@ -20,7 +20,8 @@ public class BulletMovement : PooledObject {
     
     
     void OnCollisionStay(Collision collision){
-    
+        //print(collision);
+        //print(collision.gameObject.layer);
         if(collision.gameObject.layer != 9){
             Destroy(this.gameObject);
         }

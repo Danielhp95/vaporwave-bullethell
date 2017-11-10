@@ -7,7 +7,7 @@ public class ToggleWorld : MonoBehaviour {
 	private float speed = 0f;
 	private bool togglingWorld = false;
 	private bool returning = false;
-	private float startingPosition = -9f;
+	private float startingPosition = -10f;
 	private AmbientCameraMovements ambientCameraMovements;
 	private FlipWorld backgroundFlipWorld;
 	private FlipWorld foregroundFlipWorld;

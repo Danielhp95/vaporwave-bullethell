@@ -11,8 +11,10 @@ public class BulletMovement : PooledObject {
     }
 
     void Update() {
-        this.transform.position += Vector3.Project(this.speed, this.direction.normalized) * 
-                                  Time.deltaTime;
+		this.transform.Translate(
+			Vector3.Project(this.speed, this.direction.normalized) *  Time.deltaTime,
+			Space.Self
+		);
         
     }
     
@@ -21,10 +23,7 @@ public class BulletMovement : PooledObject {
     
         if(collision.gameObject.layer != 9){
             Destroy(this.gameObject);
-           
         }
-        
-    
      }
     
         

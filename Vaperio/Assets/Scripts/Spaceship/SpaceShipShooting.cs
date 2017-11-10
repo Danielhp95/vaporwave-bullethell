@@ -3,9 +3,10 @@ using UnityEngine;
 public class SpaceShipShooting : MonoBehaviour {
 
     public GameObject bullet;
+	private Transform foreground;
 
-    void Start() {
-
+	void Start() {
+		foreground = GameObject.Find ("Foreground").transform;
     }
 
     void Update(){
@@ -20,7 +21,7 @@ public class SpaceShipShooting : MonoBehaviour {
     
     void shootBullet() {
         Vector3 offset = new Vector3(0.8f,0f,0f); 
-        Instantiate(bullet, this.transform.position + offset, Quaternion.identity);
+        Instantiate(bullet, this.transform.position + offset, foreground.rotation, foreground);
     }
     
 }

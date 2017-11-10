@@ -8,12 +8,13 @@ public class Ralph : MonoBehaviour {
     private EnemyShoot shoot;
     private float timer;
     public float shootingTime = 0.8f;
+	private Transform foreground;
     
 
 	// Use this for initialization
 	void Start () {
         EnemyShoot shoot = this.GetComponent<EnemyShoot>();
-		
+		foreground = GameObject.Find ("Foreground").transform;
 	}
 	
 	// Update is called once per frame
@@ -28,6 +29,6 @@ public class Ralph : MonoBehaviour {
     
     void shootBullet() {
         Vector3 offset = new Vector3(-0.8f,0f,0f); 
-        Instantiate(bullet, this.transform.position + offset, Quaternion.identity);
+		Instantiate(bullet, this.transform.position + offset, foreground.rotation, foreground);
     }
 }

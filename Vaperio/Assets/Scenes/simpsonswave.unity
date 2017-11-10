@@ -1255,7 +1255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 1123610981460426, guid: 12b78a7b9a0680d4fa75679ed09fb825, type: 2}
-  spawnTime: 3
+  spawnTime: 10
   minSpawnValues: {x: 3, y: 0, z: -4}
   maxSpawnValues: {x: 3, y: 3, z: -4}
 --- !u!1001 &1984162992
@@ -1366,7 +1366,7 @@ Prefab:
     - target: {fileID: 114349822293366212, guid: d21092263064d4b01810affbd10fd545,
         type: 2}
       propertyPath: startingHealth
-      value: 30
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d21092263064d4b01810affbd10fd545, type: 2}

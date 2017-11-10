@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4348144210294436}
   - component: {fileID: 212978182392627090}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: choo-poster-inv
   m_TagString: Untagged
   m_Icon: {fileID: 0}

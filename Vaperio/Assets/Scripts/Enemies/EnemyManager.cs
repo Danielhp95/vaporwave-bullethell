@@ -29,13 +29,14 @@ public class EnemyManager : MonoBehaviour
         }
         */
 
-        Instantiate (enemy, generatePoint(minSpawnValues,maxSpawnValues), foregroundTransform.rotation, foregroundTransform);
+        GameObject spawnedEnemy =  Instantiate (enemy, generatePoint(), foregroundTransform.rotation, foregroundTransform);
+        spawnedEnemy.transform.Rotate(0,180,0);
     }
     
-    private Vector3 generatePoint(Vector3 min,Vector3 max){
-        float x = (float) Random.Range (min.x, max.x) * 0.01f;
-		float y = (float) Random.Range (min.y, max.y) * 0.01f;
-		float z = (float) Random.Range (min.z, max.z) * 0.01f;
+    private Vector3 generatePoint(){
+        float x = (float) Random.Range (minSpawnValues.x, maxSpawnValues.x) ;
+		float y = (float) Random.Range (minSpawnValues.y, maxSpawnValues.y) ;
+		float z = (float) Random.Range (minSpawnValues.z, maxSpawnValues.z) ;
 		return new Vector3 (x, y, z); 	
     }
 }

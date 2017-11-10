@@ -27,7 +27,7 @@ public class TimeManager : MonoBehaviour
     }
 
     void Update() {
-       if (checkRewindCondition()) {
+       if (checkRewindCondition() && !isRewinding) {
            isRewinding = true; 
            rewindFrameIndex = recordedFrames.Count - 1;
            setFrameRate(vcrFrameRate * 2);
@@ -74,11 +74,7 @@ public class TimeManager : MonoBehaviour
 
     private void DeleteEntitiesCreatedLastFrame() {
         foreach (TimeManageable tm in this.deleteOnNextRewindFrame) {
-            if (tm is PooledObject) {
-                //tm.ReturnToPool();
-            } else {
-                tm.gameObject.SetActive(false);
-            }
+            tm.gameObject.SetActive(false);
             tm.resetCreation();
         }
     }

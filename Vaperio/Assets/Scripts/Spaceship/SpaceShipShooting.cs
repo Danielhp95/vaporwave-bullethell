@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SpaceShipShooting : MonoBehaviour {
 
-    public GameObject bullet;
+    public BulletMovement bullet;
 	private Transform foreground;
 	private int defaultYRotation = 180;
 

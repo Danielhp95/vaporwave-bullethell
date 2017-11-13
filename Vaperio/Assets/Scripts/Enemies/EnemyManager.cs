@@ -38,9 +38,7 @@ public class EnemyManager : MonoBehaviour
 
 	private bool shouldSpawn() {
 		float timeSinceLastSpawnSquared = timeSinceLastSpawn * timeSinceLastSpawn;
-		print (timeSinceLastSpawnSquared);
 		int toBeat = Random.Range (0, 100);
-		print (toBeat);
 		return timeSinceLastSpawnSquared > toBeat;
 	}
 

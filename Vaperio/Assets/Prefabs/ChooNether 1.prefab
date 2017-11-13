@@ -125,8 +125,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: {x: 5, y: 0, z: 0}
-  direction: {x: -1, y: 0, z: 0}
+  direction: {x: 1, y: 0, z: 0}
   bulletDamage: 10
+  bulletPrefab: {fileID: 0}
 --- !u!212 &212350348782563082
 SpriteRenderer:
   m_ObjectHideFlags: 1

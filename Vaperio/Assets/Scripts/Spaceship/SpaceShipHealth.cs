@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpaceShipHealth : MonoBehaviour {
     
@@ -14,7 +15,6 @@ public class SpaceShipHealth : MonoBehaviour {
 	void Start () {
         currentHealth = startingHealth;
         this.spaceshipRenderer = GetComponent<SpriteRenderer>();
-        //spaceshipRenderer.color = Color.blue;
 	}
 	
 	// Update is called once per frame
@@ -42,6 +42,7 @@ public class SpaceShipHealth : MonoBehaviour {
     private void CheckForDeath() {
         if(currentHealth <= 0){
             Destroy(this.gameObject);
+			SceneManager.LoadScene ("menu");
          }
      }
 }

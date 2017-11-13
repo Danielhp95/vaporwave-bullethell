@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    private SpaceShipHealth spaceShipHealth; // Reference to the player's health.
 	public GameObject enemy;                // The enemy prefab to be spawned.
 	public GameObject netherEnemy;                // The enemy prefab to be spawned.
-    public float spawnTime = 3f;            // How long between each spawn.
+    public float spawnTime = 1f;            // How long between each spawn.
 	private GameObject foreground;
 	public Vector3 minSpawnValues;
 	public Vector3 maxSpawnValues;
+	private float timeSinceLastSpawn = 0f;
 
     void Start ()
     {
@@ -19,23 +19,30 @@ public class EnemyManager : MonoBehaviour
         InvokeRepeating ("Spawn", spawnTime, spawnTime);
     }
 
+	void Update() {
+		timeSinceLastSpawn += Time.deltaTime;
+	}
+
 
     void Spawn ()
     {
-        /* If the player has no health left...
-        if(spaceShipHealth.currentHealth <= 0f)
-        {
-            // ... exit the function.
-            return;
-        }
-        */
-
-		GameObject toSpawn = shouldBeNether() ? netherEnemy : enemy;
-		GameObject spawnedEnemy =  Instantiate (toSpawn, new Vector3(0f, 0f, 0f), foreground.transform.rotation, foreground.transform);
-		spawnedEnemy.transform.Rotate (0, 180, 0);
-		spawnedEnemy.transform.Translate (generatePoint ());
-		spawnedEnemy.transform.Translate (new Vector3(0f, 0f, -4f), Space.World);
+		if (shouldSpawn()) {
+			GameObject toSpawn = shouldBeNether () ? netherEnemy : enemy;
+			GameObject spawnedEnemy = Instantiate (toSpawn, new Vector3 (0f, 0f, 0f), foreground.transform.rotation, foreground.transform);
+			spawnedEnemy.transform.Rotate (0, 180, 0);
+			spawnedEnemy.transform.Translate (generatePoint ());
+			spawnedEnemy.transform.Translate (new Vector3 (0f, 0f, -4f), Space.World);
+			timeSinceLastSpawn = 0f;
+		}
     }
+
+	private bool shouldSpawn() {
+		float timeSinceLastSpawnSquared = timeSinceLastSpawn * timeSinceLastSpawn;
+		print (timeSinceLastSpawnSquared);
+		int toBeat = Random.Range (0, 100);
+		print (toBeat);
+		return timeSinceLastSpawnSquared > toBeat;
+	}
 
 	private bool shouldBeNether() {
 		return Random.Range (0, 2) == 1;

@@ -186,58 +186,6 @@ Transform:
   m_Father: {fileID: 1571260083}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &284562344
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4376964800586846, guid: adb7644c79a264196920d30b7a9ea3b7, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -13.871492
-      objectReference: {fileID: 0}
-    - target: {fileID: 4376964800586846, guid: adb7644c79a264196920d30b7a9ea3b7, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.8278289
-      objectReference: {fileID: 0}
-    - target: {fileID: 4376964800586846, guid: adb7644c79a264196920d30b7a9ea3b7, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 4.86
-      objectReference: {fileID: 0}
-    - target: {fileID: 4376964800586846, guid: adb7644c79a264196920d30b7a9ea3b7, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4376964800586846, guid: adb7644c79a264196920d30b7a9ea3b7, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4376964800586846, guid: adb7644c79a264196920d30b7a9ea3b7, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4376964800586846, guid: adb7644c79a264196920d30b7a9ea3b7, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4376964800586846, guid: adb7644c79a264196920d30b7a9ea3b7, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 65497573421049976, guid: adb7644c79a264196920d30b7a9ea3b7,
-        type: 2}
-      propertyPath: m_Size.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 65497573421049976, guid: adb7644c79a264196920d30b7a9ea3b7,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: adb7644c79a264196920d30b7a9ea3b7, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &310994976
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,7 +746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0693f465007124646b9153191d0e0cfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.005
+  speed: 0.008
 --- !u!1 &1290564090
 GameObject:
   m_ObjectHideFlags: 0
@@ -1374,7 +1322,7 @@ Transform:
   - {fileID: 1571260083}
   - {fileID: 451085578}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &1828297988
 GameObject:
@@ -1417,9 +1365,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 1123610981460426, guid: 12b78a7b9a0680d4fa75679ed09fb825, type: 2}
+  netherEnemy: {fileID: 1137516193775738, guid: 801ad87ed2861b7479399a76c7780371,
+    type: 2}
   spawnTime: 10
-  minSpawnValues: {x: 2.5, y: -2, z: -4}
-  maxSpawnValues: {x: 3.5, y: 2, z: -4}
+  minSpawnValues: {x: 2.5, y: -2, z: 0}
+  maxSpawnValues: {x: 3.5, y: 2, z: 0}
 --- !u!1001 &1984162992
 Prefab:
   m_ObjectHideFlags: 0
@@ -1488,12 +1438,12 @@ Prefab:
     - target: {fileID: 65614172010241198, guid: d21092263064d4b01810affbd10fd545,
         type: 2}
       propertyPath: m_Size.x
-      value: 0.5
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 65614172010241198, guid: d21092263064d4b01810affbd10fd545,
         type: 2}
       propertyPath: m_Size.y
-      value: 0.5
+      value: 0.48
       objectReference: {fileID: 0}
     - target: {fileID: 65614172010241198, guid: d21092263064d4b01810affbd10fd545,
         type: 2}
@@ -1528,7 +1478,7 @@ Prefab:
     - target: {fileID: 114349822293366212, guid: d21092263064d4b01810affbd10fd545,
         type: 2}
       propertyPath: startingHealth
-      value: 500
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 114971846936735718, guid: d21092263064d4b01810affbd10fd545,
         type: 2}

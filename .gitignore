@@ -34,3 +34,9 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+# Mac generated files
+.DS_STORE
+# Vim swap files
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]

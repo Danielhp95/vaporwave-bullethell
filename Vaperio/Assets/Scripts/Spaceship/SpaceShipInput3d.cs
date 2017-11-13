@@ -5,10 +5,12 @@ using UnityEngine;
 public class SpaceShipInput3d : MonoBehaviour {
     
     private Rigidbody spaceshipBody;
+    public float VerticalSpeed = 10.0f, HorizontalSpeed=10.0f, DepthSpeed=10.0f;
+    private float[] hInputLag;
 	public float verticalForce = 7f;
 	public float horizontalForce = 7f;
 	public float depthForce = 10f;
-    public int lagDuration = 20;
+    public int lagDuration = 20, lagDur=10, lagInd=0;
 	private int lagIndex = 0, lagCount;
     private Vector2[] pastInputs;
 	private float maxSpeed = 2f;
@@ -17,6 +19,12 @@ public class SpaceShipInput3d : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		this.spaceshipBody = GetComponent<Rigidbody>();
+        this.hInputLag = new float[lagDur];
+        this.lagCount = lagDur-1;
+        for(int i=0; i < lagDur; i = i+1){
+            hInputLag[i]=0.0f;
+        }
+        
         this.pastInputs = new Vector2[lagDuration];
         this.lagCount = lagDuration-1;
         for(int i=0; i < lagDuration; i = i+1){
@@ -27,21 +35,20 @@ public class SpaceShipInput3d : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         handleMovement();
-        handleShooting();
+        lagInd = lagInd + 1;
+        if(lagInd == lagCount){lagInd = 0;} 
         lagIndex = lagIndex + 1;
-        if(lagIndex == lagCount){lagIndex = 0;} 
-		
+        if(lagIndex == lagCount){lagIndex = 0;}
 	}
 
 
     void handleMovement() {
 		setDrag ();
-    
 		getCurrentInput ();
 
 		applyPastInputs ();
 
-		applyMaxSpeed ();
+		//applyMaxSpeed ();
 	}
 
 	private void getCurrentInput() {
@@ -61,7 +68,7 @@ public class SpaceShipInput3d : MonoBehaviour {
 
 	private void setDrag () {
 		float speed = spaceshipBody.velocity.magnitude;
-		spaceshipBody.drag = Mathf.Max (Mathf.Pow (speed, 3), 0.5f);
+		spaceshipBody.drag = Mathf.Max (Mathf.Pow (speed, 2f), 0.5f);
 	}
 
 	private void applyMaxSpeed() {
@@ -70,15 +77,6 @@ public class SpaceShipInput3d : MonoBehaviour {
 			spaceshipBody.velocity = newVelocity.normalized * maxSpeed;
 		}
 	}
-
-    void handleShooting() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            shootBullet();
-        }
-    }
     
-    void shootBullet() {
         
-    }
-    
 }

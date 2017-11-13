@@ -40,6 +40,8 @@ GameObject:
   - component: {fileID: 65980167732768576}
   - component: {fileID: 114986878114444860}
   - component: {fileID: 65033143485935120}
+  - component: {fileID: 114942961088528564}
+  - component: {fileID: 114194917292919194}
   m_Layer: 11
   m_Name: NetherChoo
   m_TagString: Untagged
@@ -113,6 +115,31 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.94, y: 1.36, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114194917292919194
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1853311407990878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 587475fd100bd4545a8ec53c9506880b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: {x: 5, y: 0, z: 0}
+  direction: {x: -1, y: 0, z: 0}
+  bulletDamage: 10
+--- !u!114 &114942961088528564
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1853311407990878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5151af594e066444ba231f56a5b5c004, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114986878114444860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -127,7 +154,6 @@ MonoBehaviour:
   speed: {x: 5, y: 0, z: 0}
   direction: {x: -1, y: 0, z: 0}
   bulletDamage: 10
-  bulletPrefab: {fileID: 0}
 --- !u!212 &212313075537264422
 SpriteRenderer:
   m_ObjectHideFlags: 1

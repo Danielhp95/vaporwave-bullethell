@@ -7,7 +7,7 @@ public class PooledObject : MonoBehaviour {
     [System.NonSerialized]
     private ObjectPool poolInstanceForPrefab;
 
-    protected void ReturnToPool () {
+    public void ReturnToPool () {
         if (Pool) {
             Pool.AddObject(this);
         } else {
@@ -20,12 +20,6 @@ public class PooledObject : MonoBehaviour {
             poolInstanceForPrefab = ObjectPool.GetPool(this);
         }
         return (T)poolInstanceForPrefab.GetObject(position);
-    }
-
-    public void OnTriggerEnter(Collider collider) {
-        if (collider.CompareTag("boundaries")) {
-            ReturnToPool();
-        }
     }
 
 }

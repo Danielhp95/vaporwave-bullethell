@@ -2,9 +2,8 @@ using UnityEngine;
 
 public class SpaceShipShooting : MonoBehaviour {
 
-    public BulletMovement bullet;
+    public PlayerBullet bullet;
 	private Transform foreground;
-	private int defaultYRotation = 180;
 
 	void Start() {
 		foreground = GameObject.Find ("Foreground").transform;
@@ -23,8 +22,8 @@ public class SpaceShipShooting : MonoBehaviour {
     void shootBullet() {
         Vector3 offset = getOffset();
         Vector3 newBulletLocation = this.transform.position;
-        BulletMovement bulletMovement = bullet.GetPooledInstance<BulletMovement>(newBulletLocation); 
-        bulletMovement.transform.Translate(offset);
+        BulletMovement newBullet = bullet.GetPooledInstance<PlayerBullet>(newBulletLocation); 
+        newBullet.transform.Translate(offset);
     }
     
 	private Vector3 getOffset() {

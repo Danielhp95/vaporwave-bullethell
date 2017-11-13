@@ -22,8 +22,9 @@ GameObject:
   - component: {fileID: 212350348782563082}
   - component: {fileID: 54576695598150146}
   - component: {fileID: 65866046233226848}
-  - component: {fileID: 114466868797717228}
   - component: {fileID: 65645659501715230}
+  - component: {fileID: 114849978291851444}
+  - component: {fileID: 114432921793763764}
   m_Layer: 11
   m_Name: ChooNether 1
   m_TagString: Untagged
@@ -113,7 +114,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.94, y: 1.36, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114466868797717228
+--- !u!114 &114432921793763764
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -121,13 +122,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1715556451839468}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19dddff45b3a84beb9ae50b5dc2ed1f5, type: 3}
+  m_Script: {fileID: 11500000, guid: 587475fd100bd4545a8ec53c9506880b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: {x: 5, y: 0, z: 0}
   direction: {x: 1, y: 0, z: 0}
   bulletDamage: 10
-  bulletPrefab: {fileID: 0}
+--- !u!114 &114849978291851444
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1715556451839468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5151af594e066444ba231f56a5b5c004, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212350348782563082
 SpriteRenderer:
   m_ObjectHideFlags: 1

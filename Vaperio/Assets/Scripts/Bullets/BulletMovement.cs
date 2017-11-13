@@ -20,17 +20,4 @@ public class BulletMovement : PooledObject {
         
     }
     
-    void OnaTriggerEnter(Collider collider) {
-        print(collider);
-    }
-
-    void OnCollisionStay(Collision collision){
-        int spaceShipLayer = 9;
-        if(collision.gameObject.layer != spaceShipLayer) {
-            Destroy(this.gameObject);
-        }
-     }
-    
-        
-
 }

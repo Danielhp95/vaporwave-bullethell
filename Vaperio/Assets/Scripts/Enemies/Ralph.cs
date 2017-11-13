@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ralph : MonoBehaviour {
     
-    public GameObject bullet;
+    public EnemyBullet bullet;
     private EnemyShoot shoot;
     private float timer;
     public float shootingTime = 0.8f;
@@ -29,7 +29,8 @@ public class Ralph : MonoBehaviour {
     
     void shootBullet() {
         Vector3 offset = new Vector3(0.8f,0f,0f);
-        GameObject newBullet = Instantiate(bullet, this.transform.position, foreground.rotation, foreground);
+        Vector3 newBulletLocation = this.transform.position;
+        BulletMovement newBullet = bullet.GetPooledInstance<BulletMovement>(newBulletLocation); 
         newBullet.transform.Translate(offset);	
     }
 }

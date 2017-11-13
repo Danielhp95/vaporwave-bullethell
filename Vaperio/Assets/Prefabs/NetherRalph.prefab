@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isNether: 1
-  startingHealth: 100
+  startingHealth: 60
 --- !u!114 &114892501060351208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 1853311407990878, guid: 9fbf673ae3c9f004fa1da81b5ffa416f, type: 2}
-  shootingTime: 0.8
+  shootingTime: 0.9
 --- !u!212 &212500097091476276
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -4,19 +4,28 @@ public class SpaceShipShooting : MonoBehaviour {
 
     public BulletMovement bullet;
 	private Transform foreground;
-	private int defaultYRotation = 180;
+	public float reloadTime = 0.5f;
+	private float timeToShoot = 0f;
 
 	void Start() {
 		foreground = GameObject.Find ("Foreground").transform;
     }
 
     void Update(){
+		reduceTimeToShoot ();
         handleShooting();
     }
 
+	private void reduceTimeToShoot() {
+		if (timeToShoot > 0f) {
+			timeToShoot = Mathf.Max (timeToShoot - Time.deltaTime, 0f);
+		}
+	}
+
     private void handleShooting() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.Space) && timeToShoot == 0) {
             shootBullet();
+			timeToShoot = reloadTime;
         }
     }
     

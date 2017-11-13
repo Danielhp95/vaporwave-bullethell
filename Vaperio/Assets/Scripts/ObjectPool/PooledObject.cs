@@ -15,15 +15,15 @@ public class PooledObject : MonoBehaviour {
         }
     }
 
-    public T GetPooledInstance<T>(Vector3 position, Quaternion rotation) where T: PooledObject {
+    public T GetPooledInstance<T>(Vector3 position) where T: PooledObject {
         if (!poolInstanceForPrefab) {
             poolInstanceForPrefab = ObjectPool.GetPool(this);
         }
-        return (T)poolInstanceForPrefab.GetObject(position, rotation);
+        return (T)poolInstanceForPrefab.GetObject(position);
     }
 
     public void OnTriggerEnter(Collider collider) {
-        if (collider.CompareTag("Boundary")) {
+        if (collider.CompareTag("boundaries")) {
             ReturnToPool();
         }
     }

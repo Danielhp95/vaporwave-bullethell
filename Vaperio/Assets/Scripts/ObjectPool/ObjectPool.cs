@@ -6,25 +6,30 @@ public class ObjectPool : MonoBehaviour {
     PooledObject prefab;
     List<PooledObject> availableObjects = new List<PooledObject>();
 
-    public PooledObject GetObject(Vector3 position, Quaternion rotation) {
-        PooledObject obj; 
+	void Start () {
+		Transform foreground = GameObject.Find ("Foreground").transform;
+		this.transform.SetParent (foreground, true);
+	}
+
+    public PooledObject GetObject(Vector3 position) {
+        PooledObject pooledObject; 
         int lastAvailableIndex = availableObjects.Count - 1;
         if (lastAvailableIndex >= 0) {
-            obj = availableObjects[lastAvailableIndex];
+			pooledObject = availableObjects[lastAvailableIndex];
             availableObjects.RemoveAt(lastAvailableIndex);
-            obj.gameObject.SetActive(true);
+            pooledObject.gameObject.SetActive(true);
         } else {
-            obj = Instantiate<PooledObject>(prefab);
-            obj.transform.SetParent(transform, false);
-            obj.Pool = this;
+            pooledObject = Instantiate<PooledObject>(prefab);
+            pooledObject.transform.SetParent(transform, true);
+            pooledObject.Pool = this;
         }
-        obj = SetTransformInformation(obj, position, rotation);
-        return obj;
+        pooledObject = SetTransformInformation(pooledObject, position);
+        return pooledObject;
     }
 
-    private PooledObject SetTransformInformation(PooledObject obj, Vector3 position, Quaternion rotation) {
+    private PooledObject SetTransformInformation(PooledObject obj, Vector3 position) {
         obj.transform.position = position;
-        obj.transform.rotation = rotation;
+		obj.transform.rotation = obj.transform.parent.rotation;
         return obj;
     }
 

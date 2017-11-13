@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44824505, g: 0.49827188, b: 0.57558143, a: 1}
+  m_IndirectSpecularColor: {r: 0.4482453, g: 0.49827206, b: 0.5755818, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -381,7 +381,7 @@ GameObject:
   - component: {fileID: 418723736}
   m_Layer: 8
   m_Name: leftbound
-  m_TagString: Untagged
+  m_TagString: boundaries
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -511,7 +511,7 @@ GameObject:
   - component: {fileID: 705834568}
   m_Layer: 8
   m_Name: rightbound
-  m_TagString: Untagged
+  m_TagString: boundaries
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -760,7 +760,7 @@ GameObject:
   - component: {fileID: 1290564092}
   m_Layer: 8
   m_Name: downbound
-  m_TagString: Untagged
+  m_TagString: boundaries
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1222,7 +1222,7 @@ GameObject:
   - component: {fileID: 1621551528}
   m_Layer: 8
   m_Name: upbound
-  m_TagString: Untagged
+  m_TagString: boundaries
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1478,6 +1478,12 @@ Prefab:
       propertyPath: startingHealth
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 114971846936735718, guid: d21092263064d4b01810affbd10fd545,
+        type: 2}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 114165632188777186, guid: adb7644c79a264196920d30b7a9ea3b7,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d21092263064d4b01810affbd10fd545, type: 2}
   m_IsPrefabParent: 0

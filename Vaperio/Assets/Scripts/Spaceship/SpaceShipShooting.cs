@@ -22,12 +22,12 @@ public class SpaceShipShooting : MonoBehaviour {
     
     void shootBullet() {
         Vector3 offset = getOffset();
-        Vector3 newBulletLocation = this.transform.position + offset;
-        BulletMovement bm = bullet.GetPooledInstance<BulletMovement>(newBulletLocation, Quaternion.identity); 
-        bm.transform.Translate(offset);
+        Vector3 newBulletLocation = this.transform.position;
+        BulletMovement bulletMovement = bullet.GetPooledInstance<BulletMovement>(newBulletLocation); 
+        bulletMovement.transform.Translate(offset);
     }
     
 	private Vector3 getOffset() {
-		return new Vector3(-0.8f,0f,0f);
+		return new Vector3(0.8f,0f,0f);
 	}
 }

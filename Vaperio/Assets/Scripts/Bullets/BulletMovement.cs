@@ -6,11 +6,13 @@ public class BulletMovement : PooledObject {
     public Vector3 speed;
     public Vector3 direction;
     public int bulletDamage = 10;
+	public bool isNether { get; private set; }
 
     public GameObject bulletPrefab;
 
     void Start() {
-
+		FlipWorld netherTracker = GameObject.Find ("Foreground").GetComponent<FlipWorld>();
+		isNether = netherTracker.isNether;
     }
 
     void Update() {
@@ -23,8 +25,6 @@ public class BulletMovement : PooledObject {
     
     
     void OnCollisionStay(Collision collision){
-        //print(collision);
-        //print(collision.gameObject.layer);
         if(collision.gameObject.layer != 9){
             Destroy(this.gameObject);
         }

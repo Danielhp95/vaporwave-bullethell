@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour {
     
-    public bool isNether;
+    public bool isNether = false;
     public int startingHealth = 100; 
     private int currentHealth;
 
 	// Use this for initialization
 	void Start () {
-        
         currentHealth = startingHealth;
-		
 	}
 	
 	// Update is called once per frame
@@ -21,10 +19,12 @@ public class EnemyHealth : MonoBehaviour {
 	}
     
     void OnTriggerEnter(Collider other) {
-        if(other.gameObject.layer==10){
+		if(other.gameObject.layer==10){
             BulletMovement bullet =  other.GetComponent<BulletMovement>();
-            ApplyDamage(bullet.bulletDamage);
-            Destroy(other.gameObject);
+			if (bullet.isNether == isNether) {
+				ApplyDamage(bullet.bulletDamage);
+				Destroy(other.gameObject);
+			}
         }
     }
     

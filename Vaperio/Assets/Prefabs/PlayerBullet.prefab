@@ -49,7 +49,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1760269873765088}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5, z: 5}
@@ -68,7 +68,6 @@ MonoBehaviour:
   speed: {x: 10, y: 0, z: 0}
   direction: {x: 1, y: 0, z: 0}
   bulletDamage: 10
-  bulletPrefab: {fileID: 0}
 --- !u!212 &212236148676194502
 SpriteRenderer:
   m_ObjectHideFlags: 1

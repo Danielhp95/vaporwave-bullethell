@@ -1,14 +1,11 @@
 using UnityEngine;
 
-// Turn into Bullet Object with its own bullet prefab as a public variable?
 public class BulletMovement : PooledObject {
 
     public Vector3 speed;
     public Vector3 direction;
     public int bulletDamage = 10;
 	public bool isNether { get; private set; }
-
-    public GameObject bulletPrefab;
 
     void Start() {
 		FlipWorld netherTracker = GameObject.Find ("Foreground").GetComponent<FlipWorld>();
@@ -23,9 +20,13 @@ public class BulletMovement : PooledObject {
         
     }
     
-    
+    void OnaTriggerEnter(Collider collider) {
+        print(collider);
+    }
+
     void OnCollisionStay(Collision collision){
-        if(collision.gameObject.layer != 9) {
+        int spaceShipLayer = 9;
+        if(collision.gameObject.layer != spaceShipLayer) {
             Destroy(this.gameObject);
         }
      }

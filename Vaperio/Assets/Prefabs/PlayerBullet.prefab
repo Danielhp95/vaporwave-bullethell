@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 212236148676194502}
   - component: {fileID: 114165632188777186}
   - component: {fileID: 65497573421049976}
-  - component: {fileID: 54609947821400646}
   m_Layer: 10
   m_Name: PlayerBullet
   m_TagString: Untagged
@@ -38,26 +37,11 @@ Transform:
   m_GameObject: {fileID: 1760269873765088}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.92, y: 0.23, z: 4.86}
-  m_LocalScale: {x: 0.2832903, y: 0.2832903, z: 0.2832903}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &54609947821400646
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1760269873765088}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!65 &65497573421049976
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -68,7 +52,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.0799994, y: 3.3299997, z: 5}
+  m_Size: {x: 0.5, y: 0.5, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114165632188777186
 MonoBehaviour:
@@ -81,7 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19dddff45b3a84beb9ae50b5dc2ed1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: 20, y: 0, z: 0}
+  speed: {x: 10, y: 0, z: 0}
   direction: {x: -1, y: 0, z: 0}
   bulletDamage: 10
   bulletPrefab: {fileID: 0}
@@ -119,7 +103,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4dfdf2b27b5d04b449306e389cc59b67, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aeb9117447fd2f3429bc4bf9562b15ff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

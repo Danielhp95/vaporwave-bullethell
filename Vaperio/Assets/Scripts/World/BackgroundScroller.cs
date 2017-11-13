@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BackgroundSroller : MonoBehaviour {
+public class BackgroundScroller : MonoBehaviour {
 	public float speed = 0.005f;
 	// Use this for initialization
 	void Start () {

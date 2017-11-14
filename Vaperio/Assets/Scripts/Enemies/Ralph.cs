@@ -10,21 +10,19 @@ public class Ralph : MonoBehaviour {
     public float shootingTime = 0.8f;
 	private Transform foreground;
     
-
-	// Use this for initialization
 	void Start () {
         EnemyShoot shoot = this.GetComponent<EnemyShoot>();
 		foreground = GameObject.Find ("Foreground").transform;
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
-        timer += Time.deltaTime;
-        if(timer > shootingTime){
-            shootBullet();
-            timer=0;
-        }
-		
+		if (!Pause.paused) {
+			timer += Time.deltaTime;
+			if (timer > shootingTime) {
+				shootBullet ();
+				timer = 0;
+			}
+		}
 	}
     
     void shootBullet() {

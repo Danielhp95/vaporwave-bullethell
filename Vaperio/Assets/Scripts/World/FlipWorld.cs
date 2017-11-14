@@ -5,14 +5,8 @@ using UnityEngine;
 public class FlipWorld : MonoBehaviour { 
 	public bool isNether { get; private set; }
 
-	// Use this for initialization
 	void Start () {
 		isNether = false;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 
 	public void flipWorld() {

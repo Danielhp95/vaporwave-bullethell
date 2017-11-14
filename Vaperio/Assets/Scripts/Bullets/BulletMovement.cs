@@ -15,7 +15,9 @@ public class BulletMovement : PooledObject {
     }
 
     void Update() {
-		this.transform.Translate(this.direction.normalized * (speed * Time.deltaTime), Space.Self);
+		if (!Pause.paused) {
+			this.transform.Translate (this.direction.normalized * (speed * Time.deltaTime), Space.Self);
+		}
     }
     
 }

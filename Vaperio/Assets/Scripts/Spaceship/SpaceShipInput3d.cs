@@ -13,10 +13,8 @@ public class SpaceShipInput3d : MonoBehaviour {
     public int lagDuration = 20, lagDur=10, lagInd=0;
 	private int lagIndex = 0, lagCount;
     private Vector2[] pastInputs;
-	private float maxSpeed = 2f;
     
 
-	// Use this for initialization
 	void Start () {
 		this.spaceshipBody = GetComponent<Rigidbody>();
         this.hInputLag = new float[lagDur];
@@ -31,14 +29,21 @@ public class SpaceShipInput3d : MonoBehaviour {
 			pastInputs[i]= new Vector2(0f, 0f);
         }        
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
-        handleMovement();
-        lagInd = lagInd + 1;
-        if(lagInd == lagCount){lagInd = 0;} 
-        lagIndex = lagIndex + 1;
-        if(lagIndex == lagCount){lagIndex = 0;}
+		if (!Pause.paused) {
+			handleMovement ();
+			lagInd = lagInd + 1;
+			if (lagInd == lagCount) {
+				lagInd = 0;
+			} 
+			lagIndex = lagIndex + 1;
+			if (lagIndex == lagCount) {
+				lagIndex = 0;
+			}
+		} else {
+			StopShip ();
+		}
 	}
 
 
@@ -47,8 +52,6 @@ public class SpaceShipInput3d : MonoBehaviour {
 		getCurrentInput ();
 
 		applyPastInputs ();
-
-		//applyMaxSpeed ();
 	}
 
 	private void getCurrentInput() {
@@ -69,14 +72,9 @@ public class SpaceShipInput3d : MonoBehaviour {
 	private void setDrag () {
 		float speed = spaceshipBody.velocity.magnitude;
 		spaceshipBody.drag = Mathf.Max (Mathf.Pow (speed, 2f), 0.5f);
-	}
-
-	private void applyMaxSpeed() {
-		Vector3 newVelocity = spaceshipBody.velocity;
-		if (newVelocity.magnitude > maxSpeed) {
-			spaceshipBody.velocity = newVelocity.normalized * maxSpeed;
-		}
-	}
+	}   
     
-        
+	private void StopShip() {
+		spaceshipBody.velocity = new Vector3 (0f, 0f, 0f);
+	}
 }

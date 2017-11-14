@@ -58,6 +58,7 @@ public class SpaceShipHealth : MonoBehaviour {
         if(other.gameObject.layer==11){
             BulletMovement bullet =  other.GetComponent<BulletMovement>();
             ApplyDamage(bullet.bulletDamage);
+            bullet.ReturnToPool();
         }
     }
         

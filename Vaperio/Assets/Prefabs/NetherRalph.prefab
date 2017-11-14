@@ -111,11 +111,12 @@ AudioSource:
   m_GameObject: {fileID: 1137516193775738}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243901940820835256, guid: 83bca9dc4c96f4bd88ead565a9c9afec,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: dd5cc57001f584ddab21691e215f9fd0, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 0
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -228,7 +229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 1853311407990878, guid: 9fbf673ae3c9f004fa1da81b5ffa416f, type: 2}
   shootingTime: 0.9
-  shootSound: {fileID: 8300000, guid: e27ab3fa6d4e84e15aacf761e1d21ac8, type: 3}
+  shootSound: {fileID: 8300000, guid: dd5cc57001f584ddab21691e215f9fd0, type: 3}
 --- !u!212 &212500097091476276
 SpriteRenderer:
   m_ObjectHideFlags: 1

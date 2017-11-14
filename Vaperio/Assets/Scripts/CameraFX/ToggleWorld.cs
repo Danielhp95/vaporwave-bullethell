@@ -11,6 +11,7 @@ public class ToggleWorld : MonoBehaviour {
 	private AmbientCameraMovements ambientCameraMovements;
 	private FlipWorld backgroundFlipWorld;
 	private FlipWorld foregroundFlipWorld;
+    private AudioSource source;
 
 	// Use this for initialization
 	void Start () {
@@ -20,12 +21,14 @@ public class ToggleWorld : MonoBehaviour {
 		backgroundFlipWorld = background.GetComponent<FlipWorld> ();
 		GameObject foreground = GameObject.Find ("Foreground");
 		foregroundFlipWorld = foreground.GetComponent<FlipWorld> ();
+        source = GetComponent<AudioSource>();
 	}
 
 	// Update is called once per frame
 	void Update () {
 		if (( Input.GetKeyDown (KeyCode.H) || Input.GetKeyDown (KeyCode.LeftAlt) || Input.GetKeyDown(KeyCode.RightAlt))
 			&& ! togglingWorld) {
+            playSound();
 			togglingWorld = true;
 			ambientCameraMovements.toggleTogglingWorlds ();
 		}
@@ -71,4 +74,9 @@ public class ToggleWorld : MonoBehaviour {
 		float toTravel = startingPosition - transform.position.z;
 		transform.Translate (0f, 0f, toTravel);
 	}
+    
+    private void playSound() {
+    source.Play();
+    }
 }
+

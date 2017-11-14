@@ -3,7 +3,7 @@ using UnityEngine;
 // Turn into Bullet Object with its own bullet prefab as a public variable?
 public class BulletMovement : PooledObject {
 
-    public Vector3 speed;
+    public float speed;
     public Vector3 direction;
     public int bulletDamage = 10;
 	public bool isNether { get; private set; }
@@ -18,12 +18,11 @@ public class BulletMovement : PooledObject {
     void Update() {
 		if (!Pause.paused) {
 			this.transform.Translate (
-				Vector3.Project (this.speed, this.direction.normalized) * Time.deltaTime,
+				direction.normalized * (speed * Time.deltaTime),
 				Space.Self
 			);
 		}
     }
-    
     
     void OnCollisionStay(Collision collision){
         if(collision.gameObject.layer != 9) {

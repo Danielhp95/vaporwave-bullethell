@@ -1583,7 +1583,7 @@ Prefab:
         type: 2}
       propertyPath: bullet
       value: 
-      objectReference: {fileID: 114165632188777186, guid: adb7644c79a264196920d30b7a9ea3b7,
+      objectReference: {fileID: 114618023086609956, guid: ef3fac4b10054334f9351bd5656433e8,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d21092263064d4b01810affbd10fd545, type: 2}

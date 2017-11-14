@@ -12,8 +12,11 @@ public class SpaceShipHealth : MonoBehaviour {
 	private float timeToNormal = 0.2f;
 	private float timeSinceHit = 0.2f;
 	private List<SpriteRenderer> spriteRenderers = new List<SpriteRenderer>();
+    public AudioClip damageSound;
+    private AudioSource source;
 
 	void Start () {
+        source = GetComponent<AudioSource>();
         currentHealth = startingHealth;
 		GetSpriteRenderers ();
 	}
@@ -64,10 +67,12 @@ public class SpaceShipHealth : MonoBehaviour {
         
     
     private void ApplyDamage (int damage){
+        
         currentHealth -= damage;
 		timeSinceHit = 0f;
 		CheckForDeath();
 		SetColour (hitColour);
+        source.PlayOneShot(damageSound,1.5f);
     }
     
     private void CheckForDeath() {

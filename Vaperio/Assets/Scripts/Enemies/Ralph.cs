@@ -28,9 +28,9 @@ public class Ralph : MonoBehaviour {
 	}
     
     void shootBullet() {
-        Vector3 offset = new Vector3(0.8f,0f,0f);
         Vector3 newBulletLocation = this.transform.position;
         BulletMovement newBullet = bullet.GetPooledInstance<BulletMovement>(newBulletLocation); 
+        Vector3 offset = newBullet.direction * 0.8f;
         newBullet.transform.Translate(offset);	
     }
 }

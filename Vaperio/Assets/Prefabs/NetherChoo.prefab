@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 587475fd100bd4545a8ec53c9506880b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: 5, y: 0, z: 0}
+  speed: 0
   direction: {x: -1, y: 0, z: 0}
   bulletDamage: 10
 --- !u!114 &114942961088528564
@@ -151,8 +151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19dddff45b3a84beb9ae50b5dc2ed1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: 5, y: 0, z: 0}
-  direction: {x: -1, y: 0, z: 0}
+  speed: 5
+  direction: {x: 1, y: 0, z: 0}
   bulletDamage: 10
 --- !u!212 &212313075537264422
 SpriteRenderer:

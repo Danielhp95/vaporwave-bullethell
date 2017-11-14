@@ -11,6 +11,7 @@ public class MenuButtons : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.Return) || Input.GetKeyDown (KeyCode.J) ) {
 			Pause.paused = false;
+			ScoreTracker.score = 0;
 			Play ();
 		}
 	}

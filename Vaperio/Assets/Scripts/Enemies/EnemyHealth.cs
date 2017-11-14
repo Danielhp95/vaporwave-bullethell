@@ -65,6 +65,7 @@ public class EnemyHealth : MonoBehaviour {
         if(currentHealth <= 0){
             Destroy(this.gameObject);
 			enemyCounter.enemyKilled ();
+			ScoreTracker.score += 1;
          }
      }
         

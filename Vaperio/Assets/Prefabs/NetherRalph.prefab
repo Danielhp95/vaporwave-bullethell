@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 114892501060351208}
   - component: {fileID: 114459588092086702}
   - component: {fileID: 114433829715261856}
+  - component: {fileID: 82010776992284438}
   m_Layer: 0
   m_Name: NetherRalph
   m_TagString: Untagged
@@ -102,6 +103,87 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.8, y: 4.73, z: 0.2}
   m_Center: {x: 1.2, y: 0, z: 0}
+--- !u!82 &82010776992284438
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1137516193775738}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 243901940820835256, guid: 83bca9dc4c96f4bd88ead565a9c9afec,
+    type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114433829715261856
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -147,6 +229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 1853311407990878, guid: 9fbf673ae3c9f004fa1da81b5ffa416f, type: 2}
   shootingTime: 0.9
+  shootSound: {fileID: 8300000, guid: dd5cc57001f584ddab21691e215f9fd0, type: 3}
 --- !u!212 &212500097091476276
 SpriteRenderer:
   m_ObjectHideFlags: 1

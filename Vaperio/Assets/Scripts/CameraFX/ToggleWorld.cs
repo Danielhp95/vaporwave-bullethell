@@ -24,7 +24,8 @@ public class ToggleWorld : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.H) && ! togglingWorld) {
+		if (( Input.GetKeyDown (KeyCode.H) || Input.GetKeyDown (KeyCode.LeftAlt) || Input.GetKeyDown(KeyCode.RightAlt))
+			&& ! togglingWorld) {
 			togglingWorld = true;
 			ambientCameraMovements.toggleTogglingWorlds ();
 		}

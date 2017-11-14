@@ -7,10 +7,11 @@ public class SpaceShipHealth : MonoBehaviour {
     
     public  int startingHealth = 30;
     public int currentHealth;
-	private Color normalColor = Color.white;
+	private Color normalColour = Color.white;
 	private Color hitColour = Color.red;
 	private float timeToNormal = 0.2f;
 	private float timeSinceHit = 0.2f;
+	private float timeSinceColourChange = 0f;
 	private List<SpriteRenderer> spriteRenderers = new List<SpriteRenderer>();
 
 
@@ -33,23 +34,27 @@ public class SpaceShipHealth : MonoBehaviour {
 	}
 
 	private void UpdateColour () {
-		if (currentHealth > 10) {
-			if (timeSinceHit < timeToNormal) {
-				timeSinceHit += Time.deltaTime;
-			}
-			if (timeSinceHit > timeToNormal) {
-				SetColour (normalColor);
-			}
-		} else {
-			if (Random.Range (0, 10) > 6) {
-				SetColour (normalColor);
-			} else {
-				SetColour (hitColour);
-			}
+		if (timeSinceHit < timeToNormal) {
+			ColourToNormal ();
+		} else if (currentHealth <= 10) {
+			Flash ();
 		}
 	}
     
-    
+	private void ColourToNormal() {
+		timeSinceHit += Time.deltaTime;
+		if (timeSinceHit > timeToNormal) {
+			SetColour (normalColour);
+		}
+	}
+
+	private void Flash() {
+		if (4 < Random.Range (0, 11)) {
+			SetColour (hitColour);
+		} else {
+			SetColour (normalColour);
+		}
+	}
     
     void OnTriggerEnter(Collider other) {
         if(other.gameObject.layer==11){

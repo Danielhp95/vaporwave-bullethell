@@ -47,8 +47,6 @@ public class SpaceShipInput3d : MonoBehaviour {
 		getCurrentInput ();
 
 		applyPastInputs ();
-
-		//applyMaxSpeed ();
 	}
 
 	private void getCurrentInput() {
@@ -69,14 +67,6 @@ public class SpaceShipInput3d : MonoBehaviour {
 	private void setDrag () {
 		float speed = spaceshipBody.velocity.magnitude;
 		spaceshipBody.drag = Mathf.Max (Mathf.Pow (speed, 2f), 0.5f);
-	}
-
-	private void applyMaxSpeed() {
-		Vector3 newVelocity = spaceshipBody.velocity;
-		if (newVelocity.magnitude > maxSpeed) {
-			spaceshipBody.velocity = newVelocity.normalized * maxSpeed;
-		}
-	}
-    
+	}   
         
 }

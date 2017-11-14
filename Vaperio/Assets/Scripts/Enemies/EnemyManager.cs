@@ -20,13 +20,14 @@ public class EnemyManager : MonoBehaviour
     }
 
 	void Update() {
-		timeSinceLastSpawn += Time.deltaTime;
+		if (!Pause.paused) {
+			timeSinceLastSpawn += Time.deltaTime;
+		}
 	}
 
 
-    void Spawn ()
-    {
-		if (shouldSpawn()) {
+    void Spawn () {
+		if (shouldSpawn ()) {
 			GameObject toSpawn = shouldBeNether () ? netherEnemy : enemy;
 			GameObject spawnedEnemy = Instantiate (toSpawn, new Vector3 (0f, 0f, 0f), foreground.transform.rotation, foreground.transform);
 			spawnedEnemy.transform.Rotate (0, 180, 0);
@@ -39,7 +40,7 @@ public class EnemyManager : MonoBehaviour
 	private bool shouldSpawn() {
 		float timeSinceLastSpawnSquared = timeSinceLastSpawn * timeSinceLastSpawn;
 		int toBeat = Random.Range (0, 100);
-		return timeSinceLastSpawnSquared > toBeat;
+		return timeSinceLastSpawnSquared > toBeat && !Pause.paused;
 	}
 
 	private bool shouldBeNether() {

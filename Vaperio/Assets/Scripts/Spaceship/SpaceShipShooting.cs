@@ -12,8 +12,10 @@ public class SpaceShipShooting : MonoBehaviour {
     }
 
     void Update(){
-		reduceTimeToShoot ();
-        handleShooting();
+		if (!Pause.paused) {
+			reduceTimeToShoot ();
+			handleShooting ();
+		}
     }
 
 	private void reduceTimeToShoot() {

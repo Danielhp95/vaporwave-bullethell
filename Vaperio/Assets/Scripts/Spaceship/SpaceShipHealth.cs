@@ -11,11 +11,8 @@ public class SpaceShipHealth : MonoBehaviour {
 	private Color hitColour = Color.red;
 	private float timeToNormal = 0.2f;
 	private float timeSinceHit = 0.2f;
-	private float timeSinceColourChange = 0f;
 	private List<SpriteRenderer> spriteRenderers = new List<SpriteRenderer>();
 
-
-	// Use this for initialization
 	void Start () {
         currentHealth = startingHealth;
 		GetSpriteRenderers ();
@@ -27,10 +24,11 @@ public class SpaceShipHealth : MonoBehaviour {
 		spriteRenderers.AddRange (children);
 
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
-		UpdateColour ();
+		if (!Pause.paused) {
+			UpdateColour ();
+		}
 	}
 
 	private void UpdateColour () {

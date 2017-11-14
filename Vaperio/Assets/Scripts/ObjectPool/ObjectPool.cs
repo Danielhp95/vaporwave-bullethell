@@ -9,7 +9,14 @@ public class ObjectPool : MonoBehaviour {
 	void Start () {
 		Transform foreground = GameObject.Find ("Foreground").transform;
 		this.transform.SetParent (foreground, true);
+        AccountForNetherWorldOrientation(foreground);
 	}
+
+    private void AccountForNetherWorldOrientation(Transform foreground) {
+        if (foreground.GetComponent<FlipWorld>().isNether) {
+           this.transform.Rotate(0f,180f,0f); 
+        }
+    }
 
     public PooledObject GetObject(Vector3 position) {
         PooledObject pooledObject; 

@@ -16,11 +16,12 @@ public class BulletMovement : PooledObject {
     }
 
     void Update() {
-		this.transform.Translate(
-			Vector3.Project(this.speed, this.direction.normalized) *  Time.deltaTime,
-			Space.Self
-		);
-        
+		if (!Pause.paused) {
+			this.transform.Translate (
+				Vector3.Project (this.speed, this.direction.normalized) * Time.deltaTime,
+				Space.Self
+			);
+		}
     }
     
     

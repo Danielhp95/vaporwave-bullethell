@@ -12,8 +12,6 @@ public class AmbientCameraMovements : MonoBehaviour {
 	public Vector3 rotationDirection = new Vector3(0f, 0f, 0f);
 	public Vector3 defaultRotations = new Vector3(0f, 0f, 0f);
 	public Vector3 rotationWidths = new Vector3(3f, 3f, 3f);
-
-	private bool isTogglingWorlds = false;
 	 
 	// Use this for initialization
 	void Start () {
@@ -30,17 +28,13 @@ public class AmbientCameraMovements : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (!isTogglingWorlds) {
+		if (!Pause.paused) {
 			Vector3 translation = transformCamera (transform.position, scaleVector(spaceDirection, spaceSpeed), true);
 			transform.Translate(translation, Space.World);
 			Vector3 eulerAngles = getNegativeAngles(transform.eulerAngles);
 			Vector3 rotation = transformCamera (eulerAngles, scaleVector(rotationDirection, rotationSpeed), false);
 			transform.Rotate (rotation);
 		}
-	}
-
-	public void toggleTogglingWorlds() {
-		isTogglingWorlds = !isTogglingWorlds;
 	}
 
 	private Vector3 getNegativeAngles (Vector3 eulerAngles) {

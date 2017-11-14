@@ -14,7 +14,6 @@ public class EnemyHealth : MonoBehaviour {
 	private float timeSinceHit = 0.2f;
 	private List<SpriteRenderer> spriteRenderers = new List<SpriteRenderer>();
 
-	// Use this for initialization
 	void Start () {
         currentHealth = startingHealth;
 		enemyCounter = GameObject.Find ("RalphCounter").GetComponent<EnemyCounter>();
@@ -27,10 +26,11 @@ public class EnemyHealth : MonoBehaviour {
 		spriteRenderers.AddRange (children);
 
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
-		UpdateColour ();
+		if (!Pause.paused) {
+			UpdateColour ();
+		}
 	}
 
 	private void UpdateColour () {

@@ -12,22 +12,20 @@ public class Ralph : MonoBehaviour {
     public AudioClip shootSound;
     private AudioSource source;
     
-
-	// Use this for initialization
 	void Start () {
         source = GetComponent<AudioSource>();
         EnemyShoot shoot = this.GetComponent<EnemyShoot>();
 		foreground = GameObject.Find ("Foreground").transform;
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
-        timer += Time.deltaTime;
-        if(timer > shootingTime){
-            shootBullet();
-            timer=0;
-        }
-		
+		if (!Pause.paused) {
+			timer += Time.deltaTime;
+			if (timer > shootingTime) {
+				shootBullet ();
+				timer = 0;
+			}
+		}
 	}
     
     void shootBullet() {

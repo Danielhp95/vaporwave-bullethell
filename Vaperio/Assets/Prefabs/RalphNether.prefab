@@ -113,7 +113,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -196,6 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 1715556451839468, guid: 52d791868374f504f84ae48d0117f134, type: 2}
   shootingTime: 0.9
+  shootSound: {fileID: 8300000, guid: e27ab3fa6d4e84e15aacf761e1d21ac8, type: 3}
 --- !u!114 &114215950404214848
 MonoBehaviour:
   m_ObjectHideFlags: 1

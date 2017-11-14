@@ -761,7 +761,8 @@ AudioSource:
   m_GameObject: {fileID: 1183843769}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243046723376469848, guid: 83bca9dc4c96f4bd88ead565a9c9afec,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -1674,7 +1675,7 @@ Prefab:
         type: 2}
       propertyPath: shootSound
       value: 
-      objectReference: {fileID: 8300000, guid: 15a93acdca86b4563920f1c86564ea5e, type: 3}
+      objectReference: {fileID: 8300000, guid: aaa0eee4a5f97497bb1f2e5f5ba58ab3, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d21092263064d4b01810affbd10fd545, type: 2}
   m_IsPrefabParent: 0

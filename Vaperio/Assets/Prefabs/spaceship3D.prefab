@@ -104,6 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 0
+  currentHealth: 0
 --- !u!114 &114971846936735718
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -116,6 +117,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 0}
+  reloadTime: 0.5
+  shootSound: {fileID: 0}
 --- !u!212 &212541370730259136
 SpriteRenderer:
   m_ObjectHideFlags: 1

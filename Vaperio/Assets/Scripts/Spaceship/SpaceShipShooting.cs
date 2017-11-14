@@ -6,9 +6,12 @@ public class SpaceShipShooting : MonoBehaviour {
 	private Transform foreground;
 	public float reloadTime = 0.5f;
 	private float timeToShoot = 0f;
+    public AudioClip shootSound;
+    private AudioSource source;
 
 	void Start() {
 		foreground = GameObject.Find ("Foreground").transform;
+        source = GetComponent<AudioSource>();
     }
 
     void Update(){
@@ -31,6 +34,7 @@ public class SpaceShipShooting : MonoBehaviour {
     }
     
     void shootBullet() {
+        source.PlayOneShot(shootSound,1);
         Vector3 offset = getOffset();
         Vector3 newBulletLocation = this.transform.position;
         BulletMovement bulletMovement = bullet.GetPooledInstance<BulletMovement>(newBulletLocation); 

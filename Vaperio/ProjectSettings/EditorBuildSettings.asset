@@ -6,5 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/menu.unity
+    guid: 1691d22553b99fa46b0b7d58b79c4bec
+  - enabled: 1
     path: Assets/Scenes/simpsonswave.unity
     guid: 72af7c3aa7861c945ba9ea850bbc4ab9

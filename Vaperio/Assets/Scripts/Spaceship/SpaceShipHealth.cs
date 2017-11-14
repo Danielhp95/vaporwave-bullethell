@@ -33,12 +33,18 @@ public class SpaceShipHealth : MonoBehaviour {
 	}
 
 	private void UpdateColour () {
-		if (timeSinceHit < timeToNormal) {
-			timeSinceHit += Time.deltaTime;
-		}
-		if (timeSinceHit > timeToNormal) {
-			foreach (SpriteRenderer spriteRenderer in spriteRenderers) {
-				spriteRenderer.color = normalColor;
+		if (currentHealth > 10) {
+			if (timeSinceHit < timeToNormal) {
+				timeSinceHit += Time.deltaTime;
+			}
+			if (timeSinceHit > timeToNormal) {
+				SetColour (normalColor);
+			}
+		} else {
+			if (Random.Range (0, 10) > 6) {
+				SetColour (normalColor);
+			} else {
+				SetColour (hitColour);
 			}
 		}
 	}
@@ -58,7 +64,7 @@ public class SpaceShipHealth : MonoBehaviour {
         currentHealth -= damage;
 		timeSinceHit = 0f;
 		CheckForDeath();
-		SetHitColour ();
+		SetColour (hitColour);
     }
     
     private void CheckForDeath() {
@@ -78,9 +84,9 @@ public class SpaceShipHealth : MonoBehaviour {
 		ambientMovement.rotationWidths = ambientMovement.rotationWidths * 2f;
 	}
 
-	private void SetHitColour () {
+	private void SetColour (Color colour) {
 		foreach (SpriteRenderer spriteRenderer in spriteRenderers) {
-			spriteRenderer.color = hitColour;
+			spriteRenderer.color = colour;
 		}
 	}
 }

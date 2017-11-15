@@ -462,6 +462,7 @@ GameObject:
   m_Component:
   - component: {fileID: 451085578}
   - component: {fileID: 451085579}
+  - component: {fileID: 451085580}
   m_Layer: 0
   m_Name: Foreground
   m_TagString: Untagged
@@ -498,6 +499,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3c5298efd4ef77409787c6494a3fb64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &451085580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 451085577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5151af594e066444ba231f56a5b5c004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &705834566
@@ -749,6 +761,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.008
+--- !u!1 &1151047373
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1151047375}
+  - component: {fileID: 1151047374}
+  m_Layer: 0
+  m_Name: TimeManager
+  m_TagString: TimeManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1151047374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1151047373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eba14bdf76dd343f78924ab3843a5f5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1151047375
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1151047373}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1183843769 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1988548939048654, guid: d21092263064d4b01810affbd10fd545,
@@ -1153,6 +1205,7 @@ GameObject:
   - component: {fileID: 1438878260}
   - component: {fileID: 1438878261}
   - component: {fileID: 1438878262}
+  - component: {fileID: 1438878263}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1335,6 +1388,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &1438878263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1438878255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5151af594e066444ba231f56a5b5c004, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1571260081
 GameObject:
   m_ObjectHideFlags: 0
@@ -1635,7 +1699,7 @@ MonoBehaviour:
   enemy: {fileID: 1123610981460426, guid: 12b78a7b9a0680d4fa75679ed09fb825, type: 2}
   netherEnemy: {fileID: 1137516193775738, guid: 801ad87ed2861b7479399a76c7780371,
     type: 2}
-  spawnTime: 2.5
+  spawnTime: 4
   minSpawnValues: {x: 2.5, y: -2, z: 0}
   maxSpawnValues: {x: 3.5, y: 2, z: 0}
 --- !u!1001 &1984162992
@@ -1752,13 +1816,18 @@ Prefab:
         type: 2}
       propertyPath: bullet
       value: 
-      objectReference: {fileID: 114165632188777186, guid: adb7644c79a264196920d30b7a9ea3b7,
+      objectReference: {fileID: 114255362375315520, guid: adb7644c79a264196920d30b7a9ea3b7,
         type: 2}
     - target: {fileID: 114971846936735718, guid: d21092263064d4b01810affbd10fd545,
         type: 2}
       propertyPath: shootSound
       value: 
       objectReference: {fileID: 8300000, guid: aaa0eee4a5f97497bb1f2e5f5ba58ab3, type: 3}
+    - target: {fileID: 114971846936735718, guid: d21092263064d4b01810affbd10fd545,
+        type: 2}
+      propertyPath: reloadTime
+      value: 0.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d21092263064d4b01810affbd10fd545, type: 2}
   m_IsPrefabParent: 0

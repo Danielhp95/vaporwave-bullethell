@@ -11,14 +11,36 @@ public class Ralph : MonoBehaviour {
 	private Transform foreground;
     public AudioClip shootSound;
     private AudioSource source;
+
+
+    private enum BehaviourState { APPROACHING, SHOOTING };
+    private BehaviourState currentBehaviour;
     
 	void Start () {
         source = GetComponent<AudioSource>();
         EnemyShoot shoot = this.GetComponent<EnemyShoot>();
 		foreground = GameObject.Find ("Foreground").transform;
+
+        currentBehaviour = BehaviourState.APPROACHING;
 	}
 
 	void Update () {
+        HandleBehaviour();
+	}
+
+    void HandleBehaviour() {
+       switch (currentBehaviour) {
+            case BehaviourState.APPROACHING: HandleApproaching(); break;
+            case BehaviourState.SHOOTING: HandleShooting(); break;
+       }
+    }
+
+
+    void HandleApproaching() {
+
+    }
+
+    void HandleShooting() {
 		if (!Pause.paused) {
 			timer += Time.deltaTime;
 			if (timer > shootingTime) {
@@ -26,7 +48,7 @@ public class Ralph : MonoBehaviour {
 				timer = 0;
 			}
 		}
-	}
+    }
     
     void shootBullet() {
         Vector3 newBulletLocation = this.transform.position;

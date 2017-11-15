@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4377039432752164}
   - component: {fileID: 212500097091476276}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ralph-poster-inv
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 114459588092086702}
   - component: {fileID: 114433829715261856}
   - component: {fileID: 82010776992284438}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: NetherRalph
   m_TagString: Untagged
   m_Icon: {fileID: 0}

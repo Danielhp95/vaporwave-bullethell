@@ -55,10 +55,13 @@ public class SpaceShipHealth : MonoBehaviour {
 	}
     
     void OnTriggerEnter(Collider other) {
-        if(other.gameObject.layer==11){
+        if(other.gameObject.layer == LayerMask.NameToLayer("EnemyBullets")){
             BulletMovement bullet =  other.GetComponent<BulletMovement>();
             ApplyDamage(bullet.bulletDamage);
             bullet.ReturnToPool();
+        }
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemies")) {
+            ApplyDamage(5);
         }
     }
         

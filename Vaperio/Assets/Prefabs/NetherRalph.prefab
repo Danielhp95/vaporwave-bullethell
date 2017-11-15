@@ -114,7 +114,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 243901940820835256, guid: 83bca9dc4c96f4bd88ead565a9c9afec,
     type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -216,6 +216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isNether: 1
   startingHealth: 60
+  deathSound: {fileID: 8300000, guid: 0a9bcad87374946b882eed0895ba906f, type: 3}
 --- !u!114 &114892501060351208
 MonoBehaviour:
   m_ObjectHideFlags: 1

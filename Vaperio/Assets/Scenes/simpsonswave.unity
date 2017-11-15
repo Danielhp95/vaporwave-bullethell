@@ -1606,6 +1606,16 @@ Prefab:
       propertyPath: damageSound
       value: 
       objectReference: {fileID: 8300000, guid: 1f536d30492b74af3b6d4ebd05ff6894, type: 3}
+    - target: {fileID: 114971846936735718, guid: d21092263064d4b01810affbd10fd545,
+        type: 2}
+      propertyPath: reloadTime
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114349822293366212, guid: d21092263064d4b01810affbd10fd545,
+        type: 2}
+      propertyPath: startingHealth
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 82550761813122342, guid: d21092263064d4b01810affbd10fd545, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: d21092263064d4b01810affbd10fd545, type: 2}

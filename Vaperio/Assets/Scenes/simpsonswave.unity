@@ -1742,7 +1742,7 @@ Prefab:
     - target: {fileID: 114131031101782232, guid: d21092263064d4b01810affbd10fd545,
         type: 2}
       propertyPath: lagDuration
-      value: 25
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 114349822293366212, guid: d21092263064d4b01810affbd10fd545,
         type: 2}

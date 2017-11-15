@@ -216,6 +216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isNether: 1
   startingHealth: 50
+  deathSound: {fileID: 8300000, guid: 942bf41565d9547b3bcba724196e6abb, type: 3}
 --- !u!114 &114892501060351208
 MonoBehaviour:
   m_ObjectHideFlags: 1

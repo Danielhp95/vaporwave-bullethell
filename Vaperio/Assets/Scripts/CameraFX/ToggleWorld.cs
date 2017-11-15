@@ -12,7 +12,7 @@ public class ToggleWorld : MonoBehaviour {
 	private FlipWorld backgroundFlipWorld;
 	private FlipWorld foregroundFlipWorld;
     private AudioSource source;
-
+	private List<SpriteRenderer> ottoRenderers = new List<SpriteRenderer>();
 
 	void Start () {
 		GameObject camera = GameObject.Find ("Main Camera");
@@ -21,7 +21,10 @@ public class ToggleWorld : MonoBehaviour {
 		backgroundFlipWorld = background.GetComponent<FlipWorld> ();
 		GameObject foreground = GameObject.Find ("Foreground");
 		foregroundFlipWorld = foreground.GetComponent<FlipWorld> ();
-        source = GetComponent<AudioSource>();
+		source = GetComponent<AudioSource>();
+		GameObject otto = GameObject.Find ("Otto");
+		ottoRenderers.AddRange(otto.GetComponents<SpriteRenderer> ());
+		ottoRenderers.AddRange(otto.GetComponentsInChildren<SpriteRenderer> ());
 	}
 
 	void Update () {
@@ -65,6 +68,7 @@ public class ToggleWorld : MonoBehaviour {
 	private void StartToggle() {
 		togglingWorld = true;
 		Pause.paused = true;
+		ToggleOttoEnabled (true);
 	}
 
 	private void EndToggle() {
@@ -73,6 +77,13 @@ public class ToggleWorld : MonoBehaviour {
 		returning = false;
 		returnToPosition ();
 		Pause.paused = false;
+		ToggleOttoEnabled (false);
+	}
+
+	private void ToggleOttoEnabled(bool enabled) {
+		foreach (SpriteRenderer ottoRenderer in ottoRenderers) {
+			ottoRenderer.enabled = enabled;
+		}
 	}
 
 	private void returnToPosition() {

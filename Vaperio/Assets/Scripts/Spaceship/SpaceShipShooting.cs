@@ -8,6 +8,7 @@ public class SpaceShipShooting : MonoBehaviour {
 	private float timeToShoot = 0f;
     public AudioClip shootSound;
     private AudioSource source;
+    
 
 	void Start() {
 		foreground = GameObject.Find ("Foreground").transform;

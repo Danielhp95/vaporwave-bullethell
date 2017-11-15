@@ -20,6 +20,9 @@ public class EnemyManager : MonoBehaviour
     {
         foreground = GameObject.Find("Foreground");
         InvokeRepeating ("SpawnRalph", spawnTime, spawnTime);
+        foreground = GameObject.Find("Foreground");
+		//Invoke ("Spawn", spawnTime * 5f);
+		InvokeRepeating ("TryToSpawn", spawnTime * 15f	, spawnTime);
     }
 
 	void Update() {
@@ -29,36 +32,28 @@ public class EnemyManager : MonoBehaviour
 	}
 
 
-    void Spawn () {
+    void TryToSpawn () {
 		if (shouldSpawn ()) {
-			GameObject toSpawn = shouldBeNether () ? netherEnemy : enemy;
-			GameObject spawnedEnemy = Instantiate (toSpawn, new Vector3 (0f, 0f, 0f), foreground.transform.rotation, foreground.transform);
-			spawnedEnemy.transform.Rotate (0, 180, 0);
-			spawnedEnemy.transform.Translate (generatePoint (maxSpawnValues, minSpawnValues));
-			spawnedEnemy.transform.Translate (new Vector3 (0f, 0f, -4f), Space.World);
-			timeSinceLastSpawn = 0f;
+			SpawnRalph ();
 		}
     }
 
     void SpawnRalph() {
-		if (shouldSpawn()) {
-			GameObject toSpawn = shouldBeNether () ? netherEnemy : enemy;
-			GameObject spawnedEnemy = Instantiate (toSpawn, new Vector3 (0f, 0f, 0f), foreground.transform.rotation, foreground.transform);
-            Ralph spawnedRalph = spawnedEnemy.GetComponent<Ralph>();
+        GameObject toSpawn = shouldBeNether () ? netherEnemy : enemy;
+        GameObject spawnedEnemy = Instantiate (toSpawn, new Vector3 (0f, 0f, 0f), foreground.transform.rotation, foreground.transform);
+        Ralph spawnedRalph = spawnedEnemy.GetComponent<Ralph>();
 
-			Vector3 initialPosition = generatePoint(maxSpawnValues, minSpawnValues);
-            Vector3 targetPosition  = generatePoint(maxTargetPositionValues, minTargetPositionValues);
+        Vector3 initialPosition = generatePoint(maxSpawnValues, minSpawnValues);
+        Vector3 targetPosition  = generatePoint(maxTargetPositionValues, minTargetPositionValues);
 
-            int maximumNumberOfShots = 7; // Magic number
+        int maximumNumberOfShots = 7; // Magic number
 
-            spawnedRalph.InitializeRalph(initialPosition, targetPosition, maximumNumberOfShots);
+        spawnedRalph.InitializeRalph(initialPosition, targetPosition, maximumNumberOfShots);
 
-			spawnedRalph.transform.Rotate (0, 180, 0);
-			spawnedRalph.transform.Translate (new Vector3 (0f, 0f, -4f), Space.World);
-			timeSinceLastSpawn = 0f;
-		}
+        spawnedRalph.transform.Rotate (0, 180, 0);
+        spawnedRalph.transform.Translate (new Vector3 (0f, 0f, -4f), Space.World);
+        timeSinceLastSpawn = 0f;
     }
-
 	private bool shouldSpawn() {
 		float timeSinceLastSpawnSquared = timeSinceLastSpawn * timeSinceLastSpawn;
 		int toBeat = Random.Range (0, 100);

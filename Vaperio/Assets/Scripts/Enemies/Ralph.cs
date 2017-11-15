@@ -24,11 +24,15 @@ public class Ralph : MonoBehaviour {
     private enum BehaviourState { APPROACHING, SHOOTING, LEAVING };
     private BehaviourState currentBehaviour;
 
+    private FlipWorld netherTracker;
+
     
 	void Start () {
         source = GetComponent<AudioSource>();
         EnemyShoot shoot = this.GetComponent<EnemyShoot>();
 		foreground = GameObject.Find ("Foreground").transform;
+
+		netherTracker = GameObject.Find ("Foreground").GetComponent<FlipWorld>();
 
         //currentBehaviour = BehaviourState.SHOOTING; 
        // this.maximumNumberOfShots = 5;
@@ -95,14 +99,20 @@ public class Ralph : MonoBehaviour {
                 // TODO: check that Ralph is actually destroyed
                 break;
        }
-
     }
 
     private bool HasTargetPositionBeenReached() {
         float threshold = 0.1f;
-        float distanceToTarget = Vector3.Distance(this.transform.position, this.targetPosition);
-        Debug.Log(string.Format("POS: {0}  TAR: {1} DIR: {2}  DIST: {3}", this.transform.position, this.targetPosition, this.directionToTargetPosition, distanceToTarget));
+        Vector3 target = CalculateTargetAccountingForNetherPosition();
+
+        float distanceToTarget = Vector3.Distance(this.transform.position, target);
         return distanceToTarget < threshold;
+    }
+
+    private Vector3 CalculateTargetAccountingForNetherPosition() {
+        Vector3 realTarget = this.targetPosition;
+        realTarget.x = netherTracker.isNether ? -1 * this.targetPosition.x : this.targetPosition.x;
+        return realTarget;
     }
 
     private bool HasMaximumShootsBeenFired() {

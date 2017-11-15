@@ -54,6 +54,7 @@ public class EnemyManager : MonoBehaviour
         spawnedRalph.transform.Translate (new Vector3 (0f, 0f, -4f), Space.World);
         timeSinceLastSpawn = 0f;
     }
+
 	private bool shouldSpawn() {
 		float timeSinceLastSpawnSquared = timeSinceLastSpawn * timeSinceLastSpawn;
 		int toBeat = Random.Range (0, 100);

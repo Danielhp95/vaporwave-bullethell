@@ -1742,7 +1742,7 @@ Prefab:
     - target: {fileID: 114131031101782232, guid: d21092263064d4b01810affbd10fd545,
         type: 2}
       propertyPath: lagDuration
-      value: 25
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 114349822293366212, guid: d21092263064d4b01810affbd10fd545,
         type: 2}
@@ -1760,6 +1760,11 @@ Prefab:
       propertyPath: shootSound
       value: 
       objectReference: {fileID: 8300000, guid: aaa0eee4a5f97497bb1f2e5f5ba58ab3, type: 3}
+    - target: {fileID: 114971846936735718, guid: d21092263064d4b01810affbd10fd545,
+        type: 2}
+      propertyPath: reloadTime
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114652220340220660, guid: d21092263064d4b01810affbd10fd545, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: d21092263064d4b01810affbd10fd545, type: 2}

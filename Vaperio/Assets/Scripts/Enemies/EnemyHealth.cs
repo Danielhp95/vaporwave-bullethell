@@ -38,7 +38,9 @@ public class EnemyHealth : MonoBehaviour {
 			timeSinceHit += Time.deltaTime;
 		}
 		if (timeSinceHit > timeToNormal) {
-			SetColour (normalColor);
+			foreach (SpriteRenderer spriteRenderer in spriteRenderers) {
+				spriteRenderer.color = normalColor;
+			}
 		}
 	}
     
@@ -69,12 +71,6 @@ public class EnemyHealth : MonoBehaviour {
 	private void SetHitColour () {
 		foreach (SpriteRenderer spriteRenderer in spriteRenderers) {
 			spriteRenderer.color = hitColour;
-		}
-	}
-	c
-	private void SetColour(Color colour){
-		foreach (SpriteRenderer spriteRenderer in spriteRenderers) {
-			spriteRenderer.color = colour;
 		}
 	}
 }

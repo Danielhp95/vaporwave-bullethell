@@ -16,7 +16,7 @@ public class EnemyManager : MonoBehaviour
     {        
         foreground = GameObject.Find("Foreground");
 		Invoke ("Spawn", spawnTime * 5f);
-		InvokeRepeating ("TryToSpawn", spawnTime * 20f	, spawnTime);
+		InvokeRepeating ("TryToSpawn", spawnTime * 15f	, spawnTime);
     }
 
 	void Update() {

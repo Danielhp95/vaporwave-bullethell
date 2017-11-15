@@ -44,12 +44,12 @@ public class EnemyHealth : MonoBehaviour {
 		}
 	}
     
-    void OnTriggerEnter (Collider other) {
-		if(other.gameObject.layer==10){
+    void OnTriggerEnter(Collider other) {
+		if(other.gameObject.layer== LayerMask.NameToLayer("PplBullets")){
             BulletMovement bullet =  other.GetComponent<BulletMovement>();
 			if (bullet.isNether == isNether) {
 				ApplyDamage(bullet.bulletDamage);
-				Destroy(other.gameObject);
+                bullet.ReturnToPool();
 			}
         }
     }
@@ -63,7 +63,7 @@ public class EnemyHealth : MonoBehaviour {
     
     private void CheckForDeath () {
         if(currentHealth <= 0){
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
 			enemyCounter.enemyKilled ();
          }
      }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class TimeManager : MonoBehaviour 
 {
-    private int vcrFrameRate = 30;
+    private int vcrFrameRate = 60;
    
     public bool isRewinding { get; private set;}
     private List<Frame> recordedFrames;
@@ -51,7 +51,6 @@ public class TimeManager : MonoBehaviour
         bool hasRewindFinished = targetFrame == rewindFrameIndex;
         if (!hasRewindFinished) { 
             Frame previousFrame = this.recordedFrames[rewindFrameIndex];
-            print(previousFrame.frameEntities.Count);
             RewindOneFrame(previousFrame);
             DeleteEntitiesCreatedLastFrame();
             this.deleteOnNextRewindFrame.Clear();
@@ -105,7 +104,6 @@ public class TimeManager : MonoBehaviour
         FrameItem newFrameItem = new FrameItem(); newFrameItem.transformData = tfd;
         newFrameItem.deactivateAfterThisFrame = deactivateAfterThisFrame;
         newFrameItem.item = item;
-        if (recordedFrames.Count == 0) { print("Upsie"); }
         recordedFrames[recordedFrames.Count - 1].AddFrameItem(newFrameItem);
     }
 

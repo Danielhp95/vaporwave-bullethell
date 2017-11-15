@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114146215687976230}
   - component: {fileID: 114436895399879594}
   - component: {fileID: 114215950404214848}
-  - component: {fileID: 82789479330160240}
+  - component: {fileID: 82855325776312406}
   m_Layer: 0
   m_Name: RalphNether
   m_TagString: Untagged
@@ -103,7 +103,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.8, y: 4.73, z: 0.2}
   m_Center: {x: 1.2, y: 0, z: 0}
---- !u!82 &82789479330160240
+--- !u!82 &82855325776312406
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -116,7 +116,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 0
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -195,8 +195,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05d51144b370a4efaba7c2addd498d5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 1715556451839468, guid: 52d791868374f504f84ae48d0117f134, type: 2}
-  shootingTime: 0.9
+  bullet: {fileID: 114194917292919194, guid: 9fbf673ae3c9f004fa1da81b5ffa416f, type: 2}
+  shootingTime: 2
   shootSound: {fileID: 8300000, guid: 82a5579cdc86f4d2992f58fb287556a0, type: 3}
 --- !u!114 &114215950404214848
 MonoBehaviour:
@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isNether: 0
-  startingHealth: 60
+  startingHealth: 50
 --- !u!212 &212546939308622608
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -21,7 +21,7 @@ public class Ralph : MonoBehaviour {
         EnemyShoot shoot = this.GetComponent<EnemyShoot>();
 		foreground = GameObject.Find ("Foreground").transform;
 
-        currentBehaviour = BehaviourState.APPROACHING;
+        currentBehaviour = BehaviourState.SHOOTING;
 	}
 
 	void Update () {

@@ -269,6 +269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 30
   currentHealth: 0
+  damageSound: {fileID: 8300000, guid: 1f536d30492b74af3b6d4ebd05ff6894, type: 3}
 --- !u!114 &114971846936735718
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -280,7 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce8275d4179014d81960fd2cd15d719b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 114165632188777186, guid: adb7644c79a264196920d30b7a9ea3b7, type: 2}
+  bullet: {fileID: 0}
   reloadTime: 0.5
   shootSound: {fileID: 8300000, guid: aaa0eee4a5f97497bb1f2e5f5ba58ab3, type: 3}
 --- !u!212 &212541370730259136

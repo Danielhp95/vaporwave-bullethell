@@ -26,7 +26,6 @@ GameObject:
   - component: {fileID: 114971846936735718}
   - component: {fileID: 114349822293366212}
   - component: {fileID: 82836596565480092}
-  - component: {fileID: 114652220340220660}
   m_Layer: 9
   m_Name: spaceship3D
   m_TagString: Player
@@ -188,17 +187,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 0
   currentHealth: 0
---- !u!114 &114652220340220660
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1988548939048654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5151af594e066444ba231f56a5b5c004, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114971846936735718
 MonoBehaviour:
   m_ObjectHideFlags: 1

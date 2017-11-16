@@ -19,7 +19,7 @@ public class SpaceShipHealth : MonoBehaviour {
 	void Start () {
         source = GetComponents<AudioSource>();
         currentHealth = startingHealth;
-		CameraControl cameraControl = GameObject.Find ("Main Camera").GetComponent<CameraControl> ();
+		cameraControl = GameObject.Find ("Main Camera").GetComponent<CameraControl> ();
 		GetSpriteRenderers ();
 	}
 
@@ -82,11 +82,12 @@ public class SpaceShipHealth : MonoBehaviour {
 			Destroy (this.gameObject);
 			SceneManager.LoadScene ("menu");
 		} else if (currentHealth <= 10) {
-			IncreaseCameraSpeed ();
+			IncreaseCameraEffects ();
 		}
 	}
 
-	private void IncreaseCameraSpeed() {
+	private void IncreaseCameraEffects() {
+		cameraControl.IncreaseCameraEffects ();
 	}
 
 	private void SetColour (Color colour) {

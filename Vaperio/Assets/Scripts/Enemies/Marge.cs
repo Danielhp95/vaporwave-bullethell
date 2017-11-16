@@ -18,9 +18,8 @@ public class Marge : MonoBehaviour {
     public AudioClip homieSound;
     private AudioSource homie;
     private bool spiking= false;
-    
-    
-    
+	public float spikeSpeed = 3f;
+	public float returnSpeed = 3f;
 
 	// Use this for initialization
 	void Start () {
@@ -64,7 +63,7 @@ public class Marge : MonoBehaviour {
     private void ApproachPlayer(){
         float newX = Vector3.MoveTowards(transform.position, player.transform.position,0.3f).x;
         transform.position = new Vector3(newX, transform.position.y, transform.position.z);
-        }
+    }
     
 
     private void MoveToNextStateApproaching(){
@@ -90,7 +89,7 @@ public class Marge : MonoBehaviour {
         
         float waitDistance = Mathf.Abs(transform.position.x - waitTargetPos.x);
         transform.position = Vector3.MoveTowards(transform.position, waitTargetPos,0.03f);
-        if(waitDistance<waitThreshold) {
+        if(waitDistance < waitThreshold) {
             waitTargetPos = waitPos + new Vector3(((Random.Range(flip*0.2f,flip*0.7f))), 0,0);
             flip *= -1;
             wobbleWait += 1;
@@ -111,11 +110,11 @@ public class Marge : MonoBehaviour {
     
     private void SpikeAttack(){
         if(!spiking){
-        Vector3 spikeTargetPos = spikeInitPos + new Vector3(0,7f,0);
-        transform.position = Vector3.MoveTowards(transform.position, spikeTargetPos,0.4f);
-        //homie.PlayOneShot(homieSound,1);
-        float spikeDistance = Mathf.Abs(transform.position.y - spikeTargetPos.y);
-            if (spikeDistance<spikeThreshold){
+			Vector3 spikeTargetPos = new Vector3(transform.position.x, waitPos.y + 7f, transform.position.z);
+			transform.Translate(new Vector3(0f, spikeSpeed * Time.deltaTime, 0f));
+	        //homie.PlayOneShot(homieSound,1);
+	        float spikeDistance = Mathf.Abs(transform.position.y - spikeTargetPos.y);
+            if (spikeDistance < spikeThreshold){
                 spiking = true;
                 StartCoroutine(waitForSpikeDown());
             }
@@ -123,7 +122,8 @@ public class Marge : MonoBehaviour {
     }
     
     private void Return(){
-        transform.position = Vector3.MoveTowards(transform.position, waitPos,0.2f);
+		Vector3 toReturnTo = new Vector3 (transform.position.x, waitPos.y, transform.position.z);
+		transform.Translate(new Vector3(0f, -returnSpeed * Time.deltaTime, 0f));
         //homie.PlayOneShot(homieSound,1);
         float returnDistance = Mathf.Abs(transform.position.y - waitPos.y);
         if (returnDistance<distanceThreshold){
@@ -141,13 +141,11 @@ public class Marge : MonoBehaviour {
     
     private void MoveToNextStateSpike(){
         spiking = false;
-        currentBehaviour = Behaviour.RETURN;      
-        
+        currentBehaviour = Behaviour.RETURN;
     }
     
     private void MoveToNextStateReturn(){
         currentBehaviour = Behaviour.APPROACHING;      
-        
     }
 } 
 

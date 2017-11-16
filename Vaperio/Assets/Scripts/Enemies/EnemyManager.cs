@@ -14,11 +14,11 @@ public class EnemyManager : MonoBehaviour
 	private GameObject foreground;
 	private float timeSinceLastSpawn;
 
-	public Vector3 maxSpawnValues;
-	public Vector3 minSpawnValues;
+	private Vector3 maxSpawnValues;
+	private Vector3 minSpawnValues;
 
-	public Vector3 maxTargetPositionValues;
-	public Vector3 minTargetPositionValues;
+	private Vector3 maxTargetPositionValues;
+	private Vector3 minTargetPositionValues;
 
     void Start ()
     {
@@ -28,12 +28,12 @@ public class EnemyManager : MonoBehaviour
         this.enemiesSpawned = 0;
 
         // Enemy Spawner example
-        Vector3 maxSpawn  = new Vector3(-10f, 2.5f, 0f);
-        Vector3 minSpawn  = new Vector3(-10, -2.5f, 0f);
-        Vector3 maxTarget = new Vector3(4, 2.5f, 0f);
-        Vector3 minTarget = new Vector3(3, -2.5f, 0f);
+        Vector3 maxSpawn  = new Vector3(4f, 2.5f, 0f);
+        Vector3 minSpawn  = new Vector3(4f, 2.5f, 0f);
+        Vector3 maxTarget = new Vector3(3f, 2.5f, 0f);
+        Vector3 minTarget = new Vector3(3f, 2.5f, 0f);
         InitializeEnemySpawner("Prefabs/NetherRalph", "Prefabs/NetherRalph", 10, 3f, 1.0f,
-                                maxSpawn, minSpawnValues, maxTarget, minTarget);
+                                maxSpawn, minSpawn, maxTarget, minTarget);
     }
 
     void InitializeEnemySpawner(string enemy, string netherEnemy, int maximumEnemiesToSpawn, float spawnTime, float netherSpawnProbability,
@@ -43,7 +43,7 @@ public class EnemyManager : MonoBehaviour
         this.netherEnemy = Resources.Load(netherEnemy) as GameObject;
         this.maxSpawnValues = maxSpawnValues;
         this.minSpawnValues = minSpawnValues;
-        this.maxTargetPositionValues = minTargetPositionValues;
+        this.maxTargetPositionValues = maxTargetPositionValues;
         this.minTargetPositionValues = minTargetPositionValues;
 
         if (maximumEnemiesToSpawn <= 0)

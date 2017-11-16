@@ -9,8 +9,8 @@ public class Ralph : MonoBehaviour {
     private int shotsFired;
     private int maximumNumberOfShots;
 
-    private Vector3 targetPosition;
-    private Vector3 directionToTargetPosition;
+    public Vector3 targetPosition;
+    public Vector3 directionToTargetPosition;
     private float speed = 2.5f;
 
     private float timer;
@@ -38,15 +38,17 @@ public class Ralph : MonoBehaviour {
     public void InitializeRalph(Vector3 initialPosition, Vector3 targetPosition, int maximumNumberOfShots,
                                 BehaviourState initialBehaviour = BehaviourState.APPROACHING)
     {
+        if (netherTracker == null) {
+            netherTracker = GameObject.Find ("Foreground").GetComponent<FlipWorld>();
+        }
         this.targetPosition = targetPosition;
-        //this.targetPosition.x = netherTracker.isNether ? -1 * this.targetPosition.x : this.targetPosition.x;
-        //this.targetPosition.x = this.targetPosition.x;
-                 //realTarget.x = netherTracker.isNether ? -1 * this.targetPosition.x : this.targetPosition.x;
         this.targetPosition.z = -4f; //TODO: Change this
 
         this.transform.Translate(initialPosition);
 
         this.directionToTargetPosition = (targetPosition - this.transform.position).normalized;
+        if (netherTracker.isNether) { this.directionToTargetPosition.x *= -1; }
+
         this.maximumNumberOfShots = maximumNumberOfShots;
         currentBehaviour = initialBehaviour;
     }
@@ -89,7 +91,6 @@ public class Ralph : MonoBehaviour {
        switch (currentBehaviour) {
             case BehaviourState.APPROACHING:
                 if (HasTargetPositionBeenReached()) {
-                    print("Target position reached");
                     this.currentBehaviour = BehaviourState.SHOOTING;
                 }
                 break;

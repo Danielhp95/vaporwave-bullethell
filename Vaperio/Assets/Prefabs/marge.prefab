@@ -69,8 +69,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d01745dd1ea64a3aa934e787e5218ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceThreshold: 0
+  distanceThreshold: 0.1
   waitThreshold: 0.1
+  spikeThreshold: 0.1
   homieSound: {fileID: 8300000, guid: 9f7c2190684db4a9a815aa61ea691323, type: 3}
 --- !u!136 &136960416760321932
 CapsuleCollider:

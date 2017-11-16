@@ -90,7 +90,7 @@ public class Marge : MonoBehaviour {
         float waitDistance = Mathf.Abs(transform.position.x - waitTargetPos.x);
         transform.position = Vector3.MoveTowards(transform.position, waitTargetPos,0.03f);
         if(waitDistance<waitThreshold) {
-            waitTargetPos = waitPos + new Vector3(((Random.Range(flip*0.5f,flip*1f))), 0,0);
+            waitTargetPos = waitPos + new Vector3(((Random.Range(flip*0.2f,flip*0.7f))), 0,0);
             flip *= -1;
             wobbleWait += 1;
             

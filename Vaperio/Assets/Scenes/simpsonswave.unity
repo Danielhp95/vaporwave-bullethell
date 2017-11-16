@@ -1576,13 +1576,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curShader: {fileID: 4800000, guid: 8fa37e692a149ca4bbafc376fcdb397a, type: 3}
-  Distortion: 0.1
-  Gamma: 0.25
-  YExtra: 0.5
+  Distortion: 0.12
+  Gamma: 0.35
+  YExtra: 0
   CurvatureSet1: 0.5
   CurvatureSet2: 1
   DotWeight: 1
-  scanSize: 512
+  scanSize: 1024
   rgb1: {r: 1, g: 1, b: 1, a: 1}
   rgb2: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1438878264
@@ -1596,6 +1596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad18e4d7e0a4c554589e9ead7523e484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distortionRate: 0.4
 --- !u!1 &1571260081
 GameObject:
   m_ObjectHideFlags: 0

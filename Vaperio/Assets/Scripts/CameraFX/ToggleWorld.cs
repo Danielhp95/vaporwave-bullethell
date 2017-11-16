@@ -76,6 +76,7 @@ public class ToggleWorld : MonoBehaviour {
 		togglingWorld = true;
 		Pause.paused = true;
 		ToggleOttoEnabled (true);
+		cameraControl.BeginNetherJump ();
 	}
 
 	private void EndToggle() {
@@ -85,6 +86,7 @@ public class ToggleWorld : MonoBehaviour {
 		returnToPosition ();
 		Pause.paused = false;
 		ToggleOttoEnabled (false);
+		cameraControl.EndNetherJump ();
 	}
 
 	private void ToggleOttoEnabled(bool enabled) {

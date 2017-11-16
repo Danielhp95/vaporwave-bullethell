@@ -3,16 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraControl : MonoBehaviour {
-	AmbientCameraMovements ambientMovement;
-	CRTShader crtShader;
+	private AmbientCameraMovements ambientMovement;
+	private CRTShader crtShader;
+	private bool isNetherJumping = false;
+	private bool isDivingDown = false;
+	public float distortionRate = 0.4f;
 
 	void Start () {
 		ambientMovement = GameObject.Find ("Main Camera").GetComponent<AmbientCameraMovements> ();
 		crtShader = GameObject.Find ("Main Camera").GetComponent<CRTShader> ();
 	}
 
+	void Update() {
+		if (isNetherJumping) {
+			UpdateDistortion ();
+		}
+	}
+
+	private void UpdateDistortion () {
+		if (isDivingDown) {
+			crtShader.Distortion += crtShader.Distortion * (distortionRate * Time.deltaTime);
+		} else {
+			crtShader.Distortion -= crtShader.Distortion * (distortionRate * Time.deltaTime);
+		}
+	}
+
+	public void BeginNetherJump() {
+		isNetherJumping = true;
+		isDivingDown = true;
+	}
+
+	public void EndNetherJump () {
+		isNetherJumping = false;
+	}
+
 	public void ToggleWorld() {
-		ToggleCRTEffects ();		
+		isDivingDown = false;
+		ToggleCRTEffects ();
 	}
 
 	private void ToggleCRTEffects() {
@@ -32,6 +59,7 @@ public class CameraControl : MonoBehaviour {
 	}
 
 	private void IncreaseCRTEffects() {
-
+		distortionRate = 5f;
+		crtShader.scanSize = CRTScanLinesSizes.S256;
 	}
 }

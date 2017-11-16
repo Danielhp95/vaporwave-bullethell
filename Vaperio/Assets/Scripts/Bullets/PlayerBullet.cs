@@ -6,7 +6,6 @@ public class PlayerBullet : BulletMovement {
 	float normalDirection = 0.0001f;
 
 	void Start() {
-		childTransform = gameObject.gameObject.GetComponentsInChildren<Transform> ()[1];
 		PerformNetherCheck ();
 	}
 
@@ -15,9 +14,15 @@ public class PlayerBullet : BulletMovement {
     }
 
 	private void PerformNetherCheck() {
+		if (!childTransform)
+			GetChildTransform ();
 		ReturnSpriteToDefaultPosition ();
 		SetNetherTracker ();
 		FlipSprites ();
+	}
+
+	private void GetChildTransform() {
+		childTransform = gameObject.gameObject.GetComponentsInChildren<Transform> ()[1];
 	}
 
 	private void ReturnSpriteToDefaultPosition () {

@@ -873,7 +873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3f301783fad144b08b4a5a5f5d48ac4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 30
+  startingHealth: 60
   currentHealth: 0
   damageSound: {fileID: 8300000, guid: 1f536d30492b74af3b6d4ebd05ff6894, type: 3}
 --- !u!82 &1183843773

@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isNether: 1
-  startingHealth: 50
+  startingHealth: 40
   deathSound: {fileID: 8300000, guid: 942bf41565d9547b3bcba724196e6abb, type: 3}
 --- !u!114 &114892501060351208
 MonoBehaviour:
@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 114432921793763764, guid: 52d791868374f504f84ae48d0117f134, type: 2}
-  shootingTime: 2
+  shootingTime: 2.3
   shootSound: {fileID: 8300000, guid: dd5cc57001f584ddab21691e215f9fd0, type: 3}
 --- !u!212 &212500097091476276
 SpriteRenderer:

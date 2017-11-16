@@ -197,7 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 114194917292919194, guid: 9fbf673ae3c9f004fa1da81b5ffa416f, type: 2}
   shootingTime: 2
-  shootSound: {fileID: 8300000, guid: 82a5579cdc86f4d2992f58fb287556a0, type: 3}
+  shootSound: {fileID: 8300000, guid: 4fdb79e2722404cf792e15f60f0d4338, type: 3}
 --- !u!114 &114215950404214848
 MonoBehaviour:
   m_ObjectHideFlags: 1

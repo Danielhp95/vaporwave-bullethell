@@ -10,7 +10,7 @@ public class EnemyHealth : MonoBehaviour {
 	private EnemyCounter enemyCounter;
 	private Color normalColour = Color.white;
 	private Color hitColour = Color.red;
-    private Color deathColour = Color.grey;
+    private Color deathColour = Color.black;
 	private float timeToNormal = 0.2f;
 	private float timeSinceHit = 0.2f;
 	private List<SpriteRenderer> spriteRenderers = new List<SpriteRenderer>();

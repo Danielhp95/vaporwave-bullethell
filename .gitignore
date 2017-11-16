@@ -6,6 +6,7 @@ Vaperio/[Bb]uilds/
 Vaperio/Assets/AssetStoreTools*
 Vaperio/Temp/*
 Vaperio/Library/*
+Vaperio/.vs/
 Vaperio.app/
 
 # Visual Studio 2015 cache directory

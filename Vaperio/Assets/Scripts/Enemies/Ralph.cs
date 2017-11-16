@@ -21,7 +21,7 @@ public class Ralph : MonoBehaviour {
     public AudioClip shootSound;
     private AudioSource source;
 
-    private enum BehaviourState { APPROACHING, SHOOTING, LEAVING };
+    public enum BehaviourState { APPROACHING, SHOOTING, LEAVING };
     private BehaviourState currentBehaviour;
 
     private FlipWorld netherTracker;
@@ -33,20 +33,22 @@ public class Ralph : MonoBehaviour {
 		foreground = GameObject.Find ("Foreground").transform;
 
 		netherTracker = GameObject.Find ("Foreground").GetComponent<FlipWorld>();
-
-        //currentBehaviour = BehaviourState.SHOOTING; 
-       // this.maximumNumberOfShots = 5;
 	}
 
-    public void InitializeRalph(Vector3 initialPosition, Vector3 targetPosition, int maximumNumberOfShots) {
+    public void InitializeRalph(Vector3 initialPosition, Vector3 targetPosition, int maximumNumberOfShots,
+                                BehaviourState initialBehaviour = BehaviourState.APPROACHING)
+    {
         this.targetPosition = targetPosition;
+        //this.targetPosition.x = netherTracker.isNether ? -1 * this.targetPosition.x : this.targetPosition.x;
+        //this.targetPosition.x = this.targetPosition.x;
+                 //realTarget.x = netherTracker.isNether ? -1 * this.targetPosition.x : this.targetPosition.x;
         this.targetPosition.z = -4f; //TODO: Change this
 
         this.transform.Translate(initialPosition);
 
         this.directionToTargetPosition = (targetPosition - this.transform.position).normalized;
         this.maximumNumberOfShots = maximumNumberOfShots;
-        currentBehaviour = BehaviourState.APPROACHING;
+        currentBehaviour = initialBehaviour;
     }
 
 	void Update () {
@@ -87,6 +89,7 @@ public class Ralph : MonoBehaviour {
        switch (currentBehaviour) {
             case BehaviourState.APPROACHING:
                 if (HasTargetPositionBeenReached()) {
+                    print("Target position reached");
                     this.currentBehaviour = BehaviourState.SHOOTING;
                 }
                 break;

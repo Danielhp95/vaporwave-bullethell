@@ -38,6 +38,7 @@ public class EnemyManager : MonoBehaviour
 		spawnedEnemy.transform.Rotate (0, 180, 0);
 		spawnedEnemy.transform.Translate (generatePoint ());
 		spawnedEnemy.transform.Translate (new Vector3 (0f, 0f, -4f), Space.World);
+		spawnedEnemy.layer = LayerMask.NameToLayer ("Enemies");
 		timeSinceLastSpawn = 0f;
 	}
 

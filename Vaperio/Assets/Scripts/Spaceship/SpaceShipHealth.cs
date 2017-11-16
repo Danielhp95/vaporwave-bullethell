@@ -59,17 +59,19 @@ public class SpaceShipHealth : MonoBehaviour {
 		}
 	}
     
-    void OnTriggerEnter(Collider other) {
-        if(other.gameObject.layer==11){
-            BulletMovement bullet =  other.GetComponent<BulletMovement>();
-            ApplyDamage(bullet.bulletDamage);
-            bullet.ReturnToPool();
-        }
+	void OnTriggerEnter(Collider other) {
+		if(other.gameObject.layer == LayerMask.NameToLayer("EnemyBullets")){
+			BulletMovement bullet =  other.GetComponent<BulletMovement>();
+			ApplyDamage(bullet.bulletDamage);
+			bullet.ReturnToPool();
+		}
+		if (other.gameObject.layer.Equals(LayerMask.NameToLayer("Enemies"))) {
+			ApplyDamage(5);
+		}
     }
         
     
     private void ApplyDamage (int damage){
-        
         currentHealth -= damage;
 		timeSinceHit = 0f;
 		CheckForDeath();

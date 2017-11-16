@@ -40,10 +40,12 @@ public class PlayerBullet : BulletMovement {
 	}
 
 	private void FlipSprites() {
-		if (isNether) {
-			FlipForNether ();
-		} else {
-			FlipForNormal ();
+		if (childTransform) {
+			if (isNether) {
+				FlipForNether ();
+			} else {
+				FlipForNormal ();
+			}
 		}
 	}
 

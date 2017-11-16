@@ -21,10 +21,12 @@ public class PlayerBullet : BulletMovement {
 	}
 
 	private void ReturnSpriteToDefaultPosition () {
-		if (isNether) {
-			childTransform.Translate (0f, 0f, normalDirection);
-		} else {
-			childTransform.Translate (0f, 0f, netherDirection);
+		if (childTransform) {
+			if (isNether) {
+				childTransform.Translate (0f, 0f, normalDirection);
+			} else {
+				childTransform.Translate (0f, 0f, netherDirection);
+			}
 		}
 	}
 

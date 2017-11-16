@@ -34,8 +34,9 @@ public class Marge : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        HandleBehaviour();
-		
+		if (!Pause.paused) {
+			HandleBehaviour ();
+		}
 	}
     
     private void HandleBehaviour(){

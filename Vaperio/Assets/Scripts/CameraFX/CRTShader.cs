@@ -4,7 +4,7 @@ using System.Collections;
 public enum CRTScanLinesSizes {S32=32,S64=64,S128=128,S256=256,S512=512,S1024=1024};
 
 [ExecuteInEditMode]
-public class CRTShader : MonoBehaviour {
+public class CRTShader  : MonoBehaviour {
 
 	#region Variables
 	public Shader curShader;

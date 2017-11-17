@@ -82,7 +82,7 @@ public class SpaceShipHealth : MonoBehaviour {
     private void CheckForDeath() {
 		if (currentHealth <= 0) {
 			Destroy (this.gameObject);
-			SceneManager.LoadScene ("menu");
+			SceneManager.LoadScene ("score-screen");
 		} else if (currentHealth <= 10) {
 			IncreaseCameraEffects ();
 		}

@@ -82,6 +82,7 @@ public class EnemyHealth : MonoBehaviour {
             collider.enabled = false;
             Destroy(this.gameObject,deathSound.length);
             enemyCounter.enemyKilled ();
+            ScoreTracker.score += 1;
         }
      }
         

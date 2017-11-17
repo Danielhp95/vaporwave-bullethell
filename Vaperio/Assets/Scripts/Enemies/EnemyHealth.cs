@@ -77,7 +77,7 @@ public class EnemyHealth : MonoBehaviour {
         if(currentHealth <= 0 && !isDying){
             isDying = true;
             deathAudio.pitch= (Random.Range(0.8f,1.2f));
-            deathAudio.PlayOneShot(deathSound, Random.Range(0.8f,1.0f));
+            deathAudio.PlayOneShot(deathSound, Random.Range(0.7f,0.8f));
             ralph.enabled = false;
             collider.enabled = false;
             Destroy(this.gameObject,deathSound.length);

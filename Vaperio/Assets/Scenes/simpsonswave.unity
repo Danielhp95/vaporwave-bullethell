@@ -1816,7 +1816,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curShader: {fileID: 4800000, guid: 8fa37e692a149ca4bbafc376fcdb397a, type: 3}
   Distortion: 0.12
-  Gamma: 0.2
+  Gamma: 0.27
   YExtra: 0
   CurvatureSet1: 0.5
   CurvatureSet2: 1

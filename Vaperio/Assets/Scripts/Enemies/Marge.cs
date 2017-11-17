@@ -18,7 +18,7 @@ public class Marge : MonoBehaviour {
     public AudioClip homieSound;
     private AudioSource homie;
     private bool spiking= false;
-	public float spikeSpeed = 3f;
+	public float spikeSpeed = 8f;
 	public float returnSpeed = 3f;
 
 	// Use this for initialization

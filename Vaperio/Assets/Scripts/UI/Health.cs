@@ -14,6 +14,6 @@ public class Health : MonoBehaviour {
 
 	void Update () {
 		int health = spaceShipHealth.currentHealth;
-		textMesh.text = "Your health:" + health;	
+		textMesh.text = "Juice:" + health;	
 	}
 }

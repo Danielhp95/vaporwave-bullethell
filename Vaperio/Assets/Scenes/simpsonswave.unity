@@ -2208,7 +2208,7 @@ Prefab:
     - target: {fileID: 114833715232361952, guid: 4a236dffec71f4617806e126dc0fe769,
         type: 2}
       propertyPath: spikeSpeed
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114833715232361952, guid: 4a236dffec71f4617806e126dc0fe769,
         type: 2}

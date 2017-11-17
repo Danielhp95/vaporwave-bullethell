@@ -29,7 +29,7 @@ public class SpaceShipShooting : MonoBehaviour {
 	}
 
     private void handleShooting() {
-		if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.J))
+		if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.K))
 			&& timeToShoot == 0) {
             shootBullet();
 			timeToShoot = reloadTime;

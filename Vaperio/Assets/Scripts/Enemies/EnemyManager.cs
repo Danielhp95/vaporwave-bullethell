@@ -15,7 +15,7 @@ public class EnemyManager : MonoBehaviour
     void Start ()
     {        
         foreground = GameObject.Find("Foreground");
-		Invoke ("Spawn", spawnTime * 5f);
+		Invoke ("Spawn", spawnTime * 4.8f);
 		InvokeRepeating ("TryToSpawn", spawnTime * 15f	, spawnTime);
     }
 
@@ -45,6 +45,10 @@ public class EnemyManager : MonoBehaviour
 	private bool shouldSpawn() {
 		float timeSinceLastSpawnSquared = timeSinceLastSpawn * timeSinceLastSpawn;
 		int toBeat = Random.Range (0, 100);
+		print ("timeSinceLastSpawnSquared - " + timeSinceLastSpawnSquared);
+		print (Time.time * 0.07f);
+		print ("tobeat - " + toBeat);
+		timeSinceLastSpawnSquared += Time.time * 0.09f;
 		return timeSinceLastSpawnSquared > toBeat && !Pause.paused;
 	}
 

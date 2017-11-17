@@ -1,19 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine;
 
 public class Health : MonoBehaviour {
-	Text text;
+	TextMesh textMesh;
 	SpaceShipHealth spaceShipHealth;
 
 	void Start () {
 		spaceShipHealth = GameObject.Find ("spaceship3D").GetComponent<SpaceShipHealth> ();
-		text = gameObject.GetComponent<Text> ();;
+		textMesh = gameObject.GetComponent<TextMesh> ();;
 	}
 
 	void Update () {
 		int health = spaceShipHealth.currentHealth;
-		text.text = "Your health:" + health;	
+		textMesh.text = "Your health:" + health;	
 	}
 }

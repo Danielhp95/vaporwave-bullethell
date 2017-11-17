@@ -8,13 +8,22 @@ public class EnemyHealth : MonoBehaviour {
     public int startingHealth = 100; 
     private int currentHealth;
 	private EnemyCounter enemyCounter;
-	private Color normalColor = Color.white;
+	private Color normalColour = Color.white;
 	private Color hitColour = Color.red;
+    private Color deathColour = Color.black;
 	private float timeToNormal = 0.2f;
 	private float timeSinceHit = 0.2f;
 	private List<SpriteRenderer> spriteRenderers = new List<SpriteRenderer>();
+    public AudioClip deathSound;
+    private AudioSource deathAudio;
+    private Ralph ralph;
+    private BoxCollider collider;
+    private bool isDying = false;
 
 	void Start () {
+        deathAudio = GetComponent<AudioSource>();
+        ralph = GetComponent<Ralph>();
+        collider = GetComponent<BoxCollider>();
         currentHealth = startingHealth;
 		enemyCounter = GameObject.Find ("RalphCounter").GetComponent<EnemyCounter>();
 		GetSpriteRenderers ();
@@ -28,9 +37,12 @@ public class EnemyHealth : MonoBehaviour {
 	}
 
 	void Update () {
-		if (!Pause.paused) {
+		if (!Pause.paused && !isDying) {
 			UpdateColour ();
 		}
+        if(isDying) {
+            SetColour(deathColour);
+        }
 	}
 
 	private void UpdateColour () {
@@ -38,40 +50,45 @@ public class EnemyHealth : MonoBehaviour {
 			timeSinceHit += Time.deltaTime;
 		}
 		if (timeSinceHit > timeToNormal) {
-			foreach (SpriteRenderer spriteRenderer in spriteRenderers) {
-				spriteRenderer.color = normalColor;
-			}
+			SetColour(normalColour);
 		}
 	}
     
-    void OnTriggerEnter (Collider other) {
-		if(other.gameObject.layer==10){
+    void OnTriggerEnter(Collider other) {
+		if(other.gameObject.layer== LayerMask.NameToLayer("PplBullets")){
             BulletMovement bullet =  other.GetComponent<BulletMovement>();
 			if (bullet.isNether == isNether) {
 				ApplyDamage(bullet.bulletDamage);
-				Destroy(other.gameObject);
+                bullet.ReturnToPool();
 			}
         }
     }
     
     private void ApplyDamage (int damage){
+        if(isDying == false){
         currentHealth -= damage;
 		timeSinceHit = 0f;
         CheckForDeath ();
-		SetHitColour ();
+		SetColour (hitColour);
+        }
     }
     
     private void CheckForDeath () {
-        if(currentHealth <= 0){
-            Destroy(this.gameObject);
-			enemyCounter.enemyKilled ();
-			ScoreTracker.score += 1;
-         }
+        if(currentHealth <= 0 && !isDying){
+            isDying = true;
+            deathAudio.pitch= (Random.Range(0.8f,1.2f));
+            deathAudio.PlayOneShot(deathSound, Random.Range(0.8f,1.0f));
+            ralph.enabled = false;
+            collider.enabled = false;
+            Destroy(this.gameObject,deathSound.length);
+            enemyCounter.enemyKilled ();
+            ScoreTracker.score += 1;
+        }
      }
         
-	private void SetHitColour () {
+	private void SetColour (Color colour) {
 		foreach (SpriteRenderer spriteRenderer in spriteRenderers) {
-			spriteRenderer.color = hitColour;
+			spriteRenderer.color = colour;
 		}
 	}
 }

@@ -13,10 +13,10 @@ public class EnemyManager : MonoBehaviour
 	private float timeSinceLastSpawn = 0f;
 
     void Start ()
-    {
-        
+    {        
         foreground = GameObject.Find("Foreground");
-        InvokeRepeating ("Spawn", spawnTime, spawnTime);
+		Invoke ("Spawn", spawnTime * 5f);
+		InvokeRepeating ("TryToSpawn", spawnTime * 15f	, spawnTime);
     }
 
 	void Update() {
@@ -26,16 +26,21 @@ public class EnemyManager : MonoBehaviour
 	}
 
 
-    void Spawn () {
+    void TryToSpawn () {
 		if (shouldSpawn ()) {
-			GameObject toSpawn = shouldBeNether () ? netherEnemy : enemy;
-			GameObject spawnedEnemy = Instantiate (toSpawn, new Vector3 (0f, 0f, 0f), foreground.transform.rotation, foreground.transform);
-			spawnedEnemy.transform.Rotate (0, 180, 0);
-			spawnedEnemy.transform.Translate (generatePoint ());
-			spawnedEnemy.transform.Translate (new Vector3 (0f, 0f, -4f), Space.World);
-			timeSinceLastSpawn = 0f;
+			Spawn ();
 		}
     }
+
+	void Spawn() {
+		GameObject toSpawn = shouldBeNether () ? netherEnemy : enemy;
+		GameObject spawnedEnemy = Instantiate (toSpawn, new Vector3 (0f, 0f, 0f), foreground.transform.rotation, foreground.transform);
+		spawnedEnemy.transform.Rotate (0, 180, 0);
+		spawnedEnemy.transform.Translate (generatePoint ());
+		spawnedEnemy.transform.Translate (new Vector3 (0f, 0f, -4f), Space.World);
+		spawnedEnemy.layer = LayerMask.NameToLayer ("Enemies");
+		timeSinceLastSpawn = 0f;
+	}
 
 	private bool shouldSpawn() {
 		float timeSinceLastSpawnSquared = timeSinceLastSpawn * timeSinceLastSpawn;

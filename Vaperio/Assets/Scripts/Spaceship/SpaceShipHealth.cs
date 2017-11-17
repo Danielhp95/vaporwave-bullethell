@@ -12,8 +12,11 @@ public class SpaceShipHealth : MonoBehaviour {
 	private float timeToNormal = 0.2f;
 	private float timeSinceHit = 0.2f;
 	private List<SpriteRenderer> spriteRenderers = new List<SpriteRenderer>();
+    public AudioClip damageSound;
+    private AudioSource[] source;
 
 	void Start () {
+        source = GetComponents<AudioSource>();
         currentHealth = startingHealth;
 		GetSpriteRenderers ();
 	}
@@ -54,13 +57,16 @@ public class SpaceShipHealth : MonoBehaviour {
 		}
 	}
     
-    void OnTriggerEnter(Collider other) {
-        if(other.gameObject.layer==11){
-            BulletMovement bullet =  other.GetComponent<BulletMovement>();
-            ApplyDamage(bullet.bulletDamage);
-            Destroy(other.gameObject);
-            }
-        }
+	void OnTriggerEnter(Collider other) {
+		if(other.gameObject.layer == LayerMask.NameToLayer("EnemyBullets")){
+			BulletMovement bullet =  other.GetComponent<BulletMovement>();
+			ApplyDamage(bullet.bulletDamage);
+			bullet.ReturnToPool();
+		}
+		if (other.gameObject.layer.Equals(LayerMask.NameToLayer("Enemies"))) {
+			ApplyDamage(5);
+		}
+    }
         
     
     private void ApplyDamage (int damage){
@@ -68,6 +74,7 @@ public class SpaceShipHealth : MonoBehaviour {
 		timeSinceHit = 0f;
 		CheckForDeath();
 		SetColour (hitColour);
+        source[1].PlayOneShot(damageSound,1.5f);
     }
     
     private void CheckForDeath() {

@@ -4,7 +4,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MenuButtons : MonoBehaviour {
-	void Start () {
+        
+    public AudioClip loadSound;
+    private AudioSource loading;
+	
+    
+    void Start () {
+        loading = GetComponent<AudioSource>();
 		
 	}
 
@@ -16,7 +22,18 @@ public class MenuButtons : MonoBehaviour {
 		}
 	}
 
-	public void Play() {
-		SceneManager.LoadScene ("simpsonswave");
+    IEnumerator WaitForSound(){
+        yield return new WaitForSeconds(3.2f);
+        LoadLevel();
+    }
+    
+	private void Play() {
+			Pause.paused = false;
+            loading.PlayOneShot(loadSound,1);
+			StartCoroutine (WaitForSound());
 	}
+    
+    private void LoadLevel () {
+		SceneManager.LoadScene ("simpsonswave");
+    }
 }

@@ -113,8 +113,7 @@ public class Marge : MonoBehaviour {
 			Vector3 spikeTargetPos = new Vector3(transform.position.x, waitPos.y + 7f, transform.position.z);
 			transform.Translate(new Vector3(0f, spikeSpeed * Time.deltaTime, 0f));
 	        //homie.PlayOneShot(homieSound,1);
-	        float spikeDistance = Mathf.Abs(transform.position.y - spikeTargetPos.y);
-            if (spikeDistance < spikeThreshold){
+            if (transform.position.y  >= spikeTargetPos.y){
                 spiking = true;
                 StartCoroutine(waitForSpikeDown());
             }

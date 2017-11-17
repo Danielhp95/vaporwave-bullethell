@@ -14,10 +14,12 @@ public class SpaceShipHealth : MonoBehaviour {
 	private List<SpriteRenderer> spriteRenderers = new List<SpriteRenderer>();
     public AudioClip damageSound;
     private AudioSource[] source;
+	private CameraControl cameraControl;
 
 	void Start () {
         source = GetComponents<AudioSource>();
         currentHealth = startingHealth;
+		cameraControl = GameObject.Find ("Main Camera").GetComponent<CameraControl> ();
 		GetSpriteRenderers ();
 	}
 
@@ -82,16 +84,12 @@ public class SpaceShipHealth : MonoBehaviour {
 			Destroy (this.gameObject);
 			SceneManager.LoadScene ("score-screen");
 		} else if (currentHealth <= 10) {
-			IncreaseCameraSpeed ();
+			IncreaseCameraEffects ();
 		}
 	}
 
-	private void IncreaseCameraSpeed() {
-		AmbientCameraMovements ambientMovement = GameObject.Find ("Main Camera").GetComponent<AmbientCameraMovements> ();
-		ambientMovement.spaceSpeed = ambientMovement.spaceSpeed * 2.5f;
-		ambientMovement.postionWidths = ambientMovement.postionWidths * 2f;
-		ambientMovement.rotationSpeed = ambientMovement.rotationSpeed * 2.5f;
-		ambientMovement.rotationWidths = ambientMovement.rotationWidths * 2f;
+	private void IncreaseCameraEffects() {
+		cameraControl.IncreaseCameraEffects ();
 	}
 
 	private void SetColour (Color colour) {

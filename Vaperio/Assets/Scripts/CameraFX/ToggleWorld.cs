@@ -13,6 +13,7 @@ public class ToggleWorld : MonoBehaviour {
 	private FlipWorld foregroundFlipWorld;
     private AudioSource source;
 	private List<SpriteRenderer> ottoRenderers = new List<SpriteRenderer>();
+	private CameraControl cameraControl;
 
 	void Start () {
 		GameObject camera = GameObject.Find ("Main Camera");
@@ -25,6 +26,7 @@ public class ToggleWorld : MonoBehaviour {
 		GameObject otto = GameObject.Find ("Otto");
 		ottoRenderers.AddRange(otto.GetComponents<SpriteRenderer> ());
 		ottoRenderers.AddRange(otto.GetComponentsInChildren<SpriteRenderer> ());
+		cameraControl = camera.GetComponent<CameraControl> ();
 	}
 
 	void Update () {
@@ -53,12 +55,17 @@ public class ToggleWorld : MonoBehaviour {
 
 	private void checkForReverse() {
 		if (transform.position.z > 0f) {
-			speed = -speed;
-			backgroundFlipWorld.flipWorld ();
-			foregroundFlipWorld.flipWorld ();
-			transform.Translate (0f, 0f, -2 * transform.position.z);
-			returning = true;
+			EnterOtherWorld ();
 		}
+	}
+
+	private void EnterOtherWorld() {
+		speed = -speed;
+		backgroundFlipWorld.flipWorld ();
+		foregroundFlipWorld.flipWorld ();
+		transform.Translate (0f, 0f, -2 * transform.position.z);
+		returning = true;
+		cameraControl.ToggleWorld ();
 	}
 
 	private bool CheckForEnd() {
@@ -69,6 +76,7 @@ public class ToggleWorld : MonoBehaviour {
 		togglingWorld = true;
 		Pause.paused = true;
 		ToggleOttoEnabled (true);
+		cameraControl.BeginNetherJump ();
 	}
 
 	private void EndToggle() {
@@ -78,6 +86,7 @@ public class ToggleWorld : MonoBehaviour {
 		returnToPosition ();
 		Pause.paused = false;
 		ToggleOttoEnabled (false);
+		cameraControl.EndNetherJump ();
 	}
 
 	private void ToggleOttoEnabled(bool enabled) {

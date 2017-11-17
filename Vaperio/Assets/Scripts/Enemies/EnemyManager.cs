@@ -45,7 +45,7 @@ public class EnemyManager : MonoBehaviour
 	private bool shouldSpawn() {
 		float timeSinceLastSpawnSquared = timeSinceLastSpawn * timeSinceLastSpawn;
 		int toBeat = Random.Range (0, 100);
-		timeSinceLastSpawnSquared += Time.time * 0.09f;
+		timeSinceLastSpawnSquared += Time.time * 0.06f;
 		return timeSinceLastSpawnSquared > toBeat && !Pause.paused;
 	}
 

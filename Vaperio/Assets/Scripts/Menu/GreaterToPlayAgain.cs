@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GreaterToPlayAgain : MonoBehaviour {
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.Greater)
+		if (Input.GetKeyDown (KeyCode.Return)
 			|| Input.GetKeyDown (KeyCode.T)
 		) {
 			SceneManager.LoadScene ("simpsonswave");

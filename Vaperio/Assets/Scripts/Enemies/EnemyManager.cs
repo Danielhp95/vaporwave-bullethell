@@ -11,12 +11,14 @@ public class EnemyManager : MonoBehaviour
 	public Vector3 minSpawnValues;
 	public Vector3 maxSpawnValues;
 	private float timeSinceLastSpawn = 0f;
+	private float sessionStart = 0f;
 
     void Start ()
     {        
         foreground = GameObject.Find("Foreground");
 		Invoke ("Spawn", spawnTime * 4.8f);
 		InvokeRepeating ("TryToSpawn", spawnTime * 15f	, spawnTime);
+		sessionStart = Time.time;
     }
 
 	void Update() {
@@ -45,7 +47,7 @@ public class EnemyManager : MonoBehaviour
 	private bool shouldSpawn() {
 		float timeSinceLastSpawnSquared = timeSinceLastSpawn * timeSinceLastSpawn;
 		int toBeat = Random.Range (0, 100);
-		timeSinceLastSpawnSquared += Time.time * 0.06f;
+		timeSinceLastSpawnSquared += (Time.time - sessionStart) * 0.1f;
 		return timeSinceLastSpawnSquared > toBeat && !Pause.paused;
 	}
 

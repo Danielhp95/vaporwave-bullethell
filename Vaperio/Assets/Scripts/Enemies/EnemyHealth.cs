@@ -17,13 +17,13 @@ public class EnemyHealth : MonoBehaviour {
     public AudioClip deathSound;
     private AudioSource deathAudio;
     private Ralph ralph;
-    private BoxCollider collider;
+	private BoxCollider enemyCollider;
     private bool isDying = false;
 
 	void Start () {
         deathAudio = GetComponent<AudioSource>();
         ralph = GetComponent<Ralph>();
-        collider = GetComponent<BoxCollider>();
+        enemyCollider = GetComponent<BoxCollider>();
         currentHealth = startingHealth;
 		enemyCounter = GameObject.Find ("RalphCounter").GetComponent<EnemyCounter>();
 		GetSpriteRenderers ();
@@ -79,7 +79,7 @@ public class EnemyHealth : MonoBehaviour {
             deathAudio.pitch= (Random.Range(0.8f,1.2f));
             deathAudio.PlayOneShot(deathSound, Random.Range(0.7f,0.8f));
             ralph.enabled = false;
-            collider.enabled = false;
+            enemyCollider.enabled = false;
             Destroy(this.gameObject,deathSound.length);
             enemyCounter.enemyKilled ();
             ScoreTracker.score += 1;

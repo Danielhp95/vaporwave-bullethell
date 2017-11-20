@@ -35,6 +35,7 @@ public class CameraControl : MonoBehaviour {
 
 	public void EndNetherJump () {
 		isNetherJumping = false;
+		ToggleCRTEffects ();
 	}
 
 	public void ToggleWorld() {

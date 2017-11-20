@@ -23,7 +23,7 @@ public class ToggleWorld : MonoBehaviour {
 		GameObject otto = GameObject.Find ("Otto");
 		ottoRenderers.AddRange(otto.GetComponents<SpriteRenderer> ());
 		ottoRenderers.AddRange(otto.GetComponentsInChildren<SpriteRenderer> ());
-		cameraControl = camera.GetComponent<CameraControl> ();
+		cameraControl = gameObject.GetComponent<CameraControl> ();
 	}
 
 	void Update () {

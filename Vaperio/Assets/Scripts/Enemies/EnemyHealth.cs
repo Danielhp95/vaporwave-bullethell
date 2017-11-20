@@ -17,7 +17,7 @@ public class EnemyHealth : MonoBehaviour {
     public AudioClip deathSound;
     private AudioSource deathAudio;
     private Ralph ralph;
-	private BoxCollider enemyCollider;
+    private BoxCollider enemyCollider;
     private bool isDying = false;
 
 	void Start () {
@@ -65,26 +65,30 @@ public class EnemyHealth : MonoBehaviour {
     }
     
     private void ApplyDamage (int damage){
-        if(isDying == false){
-        currentHealth -= damage;
-		timeSinceHit = 0f;
-        CheckForDeath ();
-		SetColour (hitColour);
+        if(!isDying){
+	        currentHealth -= damage;
+			timeSinceHit = 0f;
+			if (CheckForDeath ()) {
+				Die ();
+			}
+			SetColour (hitColour);
         }
     }
     
-    private void CheckForDeath () {
-        if(currentHealth <= 0 && !isDying){
-            isDying = true;
-            deathAudio.pitch= (Random.Range(0.8f,1.2f));
-            deathAudio.PlayOneShot(deathSound, Random.Range(0.7f,0.8f));
-            ralph.enabled = false;
-            enemyCollider.enabled = false;
-            Destroy(this.gameObject,deathSound.length);
-            enemyCounter.enemyKilled ();
-            ScoreTracker.score += 1;
-        }
-     }
+	private bool CheckForDeath () {
+		return currentHealth <= 0 && !isDying;
+ 	}
+
+	private void Die() {
+		isDying = true;
+		deathAudio.pitch= (Random.Range(0.8f,1.2f));
+		deathAudio.PlayOneShot(deathSound, Random.Range(0.7f,0.8f));
+		ralph.enabled = false;
+		enemyCollider.enabled = false;
+		Destroy(this.gameObject, deathSound.length);
+		enemyCounter.enemyKilled ();
+		ScoreTracker.score += 1;
+	}
         
 	private void SetColour (Color colour) {
 		foreach (SpriteRenderer spriteRenderer in spriteRenderers) {

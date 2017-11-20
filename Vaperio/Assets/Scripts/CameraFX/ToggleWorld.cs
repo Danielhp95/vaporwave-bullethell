@@ -16,12 +16,9 @@ public class ToggleWorld : MonoBehaviour {
 	private CameraControl cameraControl;
 
 	void Start () {
-		GameObject camera = GameObject.Find ("Main Camera");
-		ambientCameraMovements = camera.GetComponent<AmbientCameraMovements> ();
-		GameObject background = GameObject.Find ("Background");
-		backgroundFlipWorld = background.GetComponent<FlipWorld> ();
-		GameObject foreground = GameObject.Find ("Foreground");
-		foregroundFlipWorld = foreground.GetComponent<FlipWorld> ();
+		ambientCameraMovements = GameObject.Find ("Main Camera").GetComponent<AmbientCameraMovements> ();
+		backgroundFlipWorld = GameObject.Find ("Background").GetComponent<FlipWorld> ();
+		foregroundFlipWorld = GameObject.Find ("Foreground").GetComponent<FlipWorld> ();
 		source = GetComponent<AudioSource>();
 		GameObject otto = GameObject.Find ("Otto");
 		ottoRenderers.AddRange(otto.GetComponents<SpriteRenderer> ());
@@ -32,28 +29,28 @@ public class ToggleWorld : MonoBehaviour {
 	void Update () {
 		if (( Input.GetKeyDown (KeyCode.H) || Input.GetKeyDown (KeyCode.LeftAlt) || Input.GetKeyDown(KeyCode.RightAlt))
 			&& ! togglingWorld) {
-            playSound();
+            PlaySound();
 			StartToggle ();
 		}
 		if (togglingWorld) {
-			accelerate ();
-			move ();
-			checkForReverse ();
+			Accelerate ();
+			Move ();
+			CheckForReverse ();
 			if (returning && CheckForEnd()) {
 				EndToggle ();
 			}
 		}
 	}
 
-	private void accelerate() {
+	private void Accelerate() {
 		speed = speed + acceleration * Time.deltaTime;
 	}
 
-	private void move() {
+	private void Move() {
 		transform.Translate (0f, 0f, speed);
 	}
 
-	private void checkForReverse() {
+	private void CheckForReverse() {
 		if (transform.position.z > 0f) {
 			EnterOtherWorld ();
 		}
@@ -100,7 +97,7 @@ public class ToggleWorld : MonoBehaviour {
 		transform.Translate (0f, 0f, toTravel);
 	}
     
-    private void playSound() {
+    private void PlaySound() {
     source.Play();
     }
 }

@@ -7,17 +7,14 @@ public class Marge : MonoBehaviour {
     private Behaviour currentBehaviour;
     private GameObject player;  
     public float distanceThreshold = 0.1f;
-    public float waitThreshold = 0.1f;
-    public float spikeThreshold = 0.1f;
-    private float flip =1.0f;
-    private int wobbleWait= 0;
-    private int wobbleThreshold = 3;
-    private Vector3 waitPos;
-    private Vector3 waitTargetPos;
-    private Vector3 spikeInitPos;
+    private float flip = 1.0f;
+	private int wobbleCount = 0;
+    private int wobbleNumber = 3;
+	private Vector3 waitPosition;
+	private Vector3 wobbleTargetPosition;
     public AudioClip homieSound;
     private AudioSource homie;
-    private bool spiking= false;
+    private bool spiking = false;
 	public float spikeSpeed = 8f;
 	public float returnSpeed = 3f;
 
@@ -25,7 +22,7 @@ public class Marge : MonoBehaviour {
 	void Start () {
         currentBehaviour = Behaviour.APPROACHING;
         player = GameObject.Find("spaceship3D");
-        wobbleThreshold = Random.Range(2,5);
+        wobbleNumber = Random.Range(2,5);
         homie = GetComponent<AudioSource>();
  
 		
@@ -50,11 +47,9 @@ public class Marge : MonoBehaviour {
                 break;
             case Behaviour.SPIKE:
                 SpikeAttack();
-                
                 break;
             case Behaviour.RETURN:
                 Return();
-                
                 break;
         }
 
@@ -69,8 +64,8 @@ public class Marge : MonoBehaviour {
     private void MoveToNextStateApproaching(){
         float distance = Mathf.Abs(transform.position.x - player.transform.position.x);
         if(distance < distanceThreshold){
-            waitPos = transform.position;
-            waitTargetPos = transform.position + new Vector3((transform.position.x + (Random.Range(0.5f,1f))), 0,0);
+            waitPosition = transform.position;
+            wobbleTargetPosition = transform.position + new Vector3((transform.position.x + (Random.Range(0.5f,1f))), 0,0);
             currentBehaviour = Behaviour.WAITFORSPIKE;
         } 
         
@@ -87,12 +82,12 @@ public class Marge : MonoBehaviour {
     
     private void  Wobble() {
         
-        float waitDistance = Mathf.Abs(transform.position.x - waitTargetPos.x);
-        transform.position = Vector3.MoveTowards(transform.position, waitTargetPos,0.03f);
-        if(waitDistance < waitThreshold) {
-            waitTargetPos = waitPos + new Vector3(((Random.Range(flip*0.2f,flip*0.7f))), 0,0);
+        float waitDistance = Mathf.Abs(transform.position.x - wobbleTargetPosition.x);
+        transform.position = Vector3.MoveTowards(transform.position, wobbleTargetPosition,0.03f);
+        if(waitDistance < distanceThreshold) {
+            wobbleTargetPosition = waitPosition + new Vector3(((Random.Range(flip*0.2f,flip*0.7f))), 0,0);
             flip *= -1;
-            wobbleWait += 1;
+            wobbleCount  += 1;
             
         }
     
@@ -100,31 +95,31 @@ public class Marge : MonoBehaviour {
     
     
     private void MoveToNextStateWait(){
-        if (wobbleWait == wobbleThreshold) {
-            wobbleWait = 0;
-            spikeInitPos = transform.position;
+        if (wobbleCount  == wobbleNumber) {
+            wobbleCount  = 0;
+			waitPosition = transform.position;
             currentBehaviour = Behaviour.SPIKE;
-            
+			spiking = true;
         }
     }
     
     private void SpikeAttack(){
-        if(!spiking){
-			Vector3 spikeTargetPos = new Vector3(transform.position.x, waitPos.y + 7f, transform.position.z);
+        if(spiking) {
+			Vector3 spikeTargetPos = new Vector3(transform.position.x, waitPosition.y + 7f, transform.position.z);
 			transform.Translate(new Vector3(0f, spikeSpeed * Time.deltaTime, 0f));
 	        //homie.PlayOneShot(homieSound,1);
             if (transform.position.y  >= spikeTargetPos.y){
-                spiking = true;
+                spiking = false;
                 StartCoroutine(waitForSpikeDown());
             }
         }
     }
     
     private void Return(){
-		Vector3 toReturnTo = new Vector3 (transform.position.x, waitPos.y, transform.position.z);
+		Vector3 toReturnTo = new Vector3 (transform.position.x, waitPosition.y, transform.position.z);
 		transform.Translate(new Vector3(0f, -returnSpeed * Time.deltaTime, 0f));
         //homie.PlayOneShot(homieSound,1);
-        float returnDistance = Mathf.Abs(transform.position.y - waitPos.y);
+        float returnDistance = Mathf.Abs(transform.position.y - waitPosition.y);
         if (returnDistance<distanceThreshold){
             MoveToNextStateReturn();
         }
@@ -134,12 +129,9 @@ public class Marge : MonoBehaviour {
     IEnumerator waitForSpikeDown() {
         yield return new WaitForSeconds(2);
         MoveToNextStateSpike();
-        
-        
     }
     
     private void MoveToNextStateSpike(){
-        spiking = false;
         currentBehaviour = Behaviour.RETURN;
     }
     

@@ -1,7 +1,6 @@
 using UnityEngine;
 
 public class BulletMovement : PooledObject {
-
     public float speed;
     public Vector3 direction;
     public int bulletDamage = 10;

@@ -8,6 +8,7 @@ public class EnemyHealth : MonoBehaviour {
     public int startingHealth = 100; 
     private int currentHealth;
 	private EnemyCounter enemyCounter;
+    private EnemyManager enemyManager;
 	private Color normalColour = Color.white;
 	private Color hitColour = Color.red;
     private Color deathColour = Color.black;
@@ -26,7 +27,8 @@ public class EnemyHealth : MonoBehaviour {
         enemyCollider = GetComponent<BoxCollider>();
         currentHealth = startingHealth;
 		enemyCounter = GameObject.Find ("RalphCounter").GetComponent<EnemyCounter>();
-		GetSpriteRenderers ();
+        enemyManager = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
+        GetSpriteRenderers ();
 	}
 
 	private void GetSpriteRenderers() {
@@ -87,6 +89,7 @@ public class EnemyHealth : MonoBehaviour {
 		enemyCollider.enabled = false;
 		Destroy(this.gameObject, deathSound.length);
 		enemyCounter.enemyKilled ();
+        enemyManager.EnemyKilled();
 		ScoreTracker.score += 1;
 	}
         

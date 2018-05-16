@@ -2307,12 +2307,12 @@ Prefab:
         type: 2}
       propertyPath: homieSound
       value: 
-      objectReference: {fileID: 8300000, guid: 36fbccdc9f0178248a5e6d8410d970c1, type: 3}
+      objectReference: {fileID: 8300000, guid: c5e1f2c554d762f45ae2e10f527fa8d2, type: 3}
     - target: {fileID: 114833715232361952, guid: 4a236dffec71f4617806e126dc0fe769,
         type: 2}
       propertyPath: reverseHomieSound
       value: 
-      objectReference: {fileID: 8300000, guid: 52d90f4889e3fd444956266795afcd5a, type: 3}
+      objectReference: {fileID: 8300000, guid: 06766147d0054134f95022ffb8cd75a1, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a236dffec71f4617806e126dc0fe769, type: 2}
   m_IsPrefabParent: 0

@@ -59,10 +59,10 @@ public class EnemyManager : MonoBehaviour
         ralphsKilled++;
         if(ralphsKilled == 1)
         {
-            Invoke("SpawnNether", 4f);
+            Invoke("SpawnNether", 6f);
         } else if (ralphsKilled == 2)
         {
-            InvokeRepeating("TryToSpawn", spawnTime * 4f, spawnTime);
+            InvokeRepeating("TryToSpawn", spawnTime * 6f, spawnTime);
         }
     }
 

@@ -13,13 +13,17 @@ public class Marge : MonoBehaviour {
 	private Vector3 waitPosition;
 	private Vector3 wobbleTargetPosition;
     public AudioClip homieSound;
+    public AudioClip reverseHomieSound;
     private AudioSource homie;
     private bool spiking = false;
 	public float spikeSpeed = 8f;
 	public float returnSpeed = 3f;
+    protected FlipWorld netherTracker;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start ()
+    {
+        this.netherTracker = GameObject.Find("Foreground").GetComponent<FlipWorld>();
         currentBehaviour = Behaviour.APPROACHING;
         player = GameObject.Find("spaceship3D");
         wobbleNumber = Random.Range(2,5);
@@ -100,7 +104,7 @@ public class Marge : MonoBehaviour {
 			waitPosition = transform.position;
             currentBehaviour = Behaviour.SPIKE;
 			spiking = true;
-            homie.PlayOneShot(homieSound, 1);
+            playHomie();
         }
     }
     
@@ -117,14 +121,21 @@ public class Marge : MonoBehaviour {
     
     private void Return(){
 		Vector3 toReturnTo = new Vector3 (transform.position.x, waitPosition.y, transform.position.z);
-		transform.Translate(new Vector3(0f, -returnSpeed * Time.deltaTime, 0f));
-        //homie.PlayOneShot(homieSound,1);
+        transform.Translate(new Vector3(0f, -returnSpeed * Time.deltaTime, 0f));
         float returnDistance = Mathf.Abs(transform.position.y - waitPosition.y);
         if (returnDistance<distanceThreshold){
             MoveToNextStateReturn();
         }
     }
     
+
+    private void playHomie()
+    {
+        float vol = Random.Range(0.4f, 0.6f);
+        homie.pitch = (Random.Range(0.9f, 1.1f));
+        AudioClip clip = netherTracker.isNether ? reverseHomieSound : homieSound;
+        homie.PlayOneShot(clip, vol);
+    }
     
     IEnumerator waitForSpikeDown() {
         yield return new WaitForSeconds(2);
@@ -139,5 +150,3 @@ public class Marge : MonoBehaviour {
         currentBehaviour = Behaviour.APPROACHING;      
     }
 } 
-
-

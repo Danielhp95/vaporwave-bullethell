@@ -23,7 +23,7 @@ public class Marge : MonoBehaviour {
         currentBehaviour = Behaviour.APPROACHING;
         player = GameObject.Find("spaceship3D");
         wobbleNumber = Random.Range(2,5);
-        homie = GetComponent<AudioSource>();
+        homie = GetComponentInChildren<AudioSource>();
  
 		
 	}
@@ -100,6 +100,7 @@ public class Marge : MonoBehaviour {
 			waitPosition = transform.position;
             currentBehaviour = Behaviour.SPIKE;
 			spiking = true;
+            homie.PlayOneShot(homieSound, 1);
         }
     }
     
@@ -107,7 +108,6 @@ public class Marge : MonoBehaviour {
         if(spiking) {
 			Vector3 spikeTargetPos = new Vector3(transform.position.x, waitPosition.y + 7f, transform.position.z);
 			transform.Translate(new Vector3(0f, spikeSpeed * Time.deltaTime, 0f));
-	        //homie.PlayOneShot(homieSound,1);
             if (transform.position.y  >= spikeTargetPos.y){
                 spiking = false;
                 StartCoroutine(waitForSpikeDown());

@@ -4,14 +4,34 @@ using UnityEngine;
 
 public class EnemyCounter : MonoBehaviour {
 	public int enemiesKilled = 0;
-	private TextMesh textMesh;
+	public TextMesh ralphCounterText;
+    public TextMesh instructionText;
+    private const string toggleWorldInstruction = "alt / h : switch worlds";
 
-	void Start () {
-		textMesh = gameObject.GetComponent<TextMesh> ();		
+
+    void Start () {
+		ralphCounterText = gameObject.GetComponent<TextMesh> ();		
 	}
 
 	public void enemyKilled() {
 		enemiesKilled++;
-		textMesh.text = "Ralphs Bullied: " + enemiesKilled;
+		ralphCounterText.text = "Ralphs Bullied: " + enemiesKilled;
+        if(enemiesKilled == 1)
+        {
+            ShowWorldToggleInstruction();
+        } else if (enemiesKilled == 2)
+        {
+            HideWorldToggleInstruction();
+        }
 	}
+
+    private void ShowWorldToggleInstruction()
+    {
+        instructionText.text = toggleWorldInstruction;
+    }
+
+    private void HideWorldToggleInstruction()
+    {
+        instructionText.text = "";
+    }
 }

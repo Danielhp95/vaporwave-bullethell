@@ -11,14 +11,16 @@ public class EnemyManager : MonoBehaviour
 	private GameObject foreground;
 	public Vector3 minSpawnValues;
 	public Vector3 maxSpawnValues;
+    private LevelManager levelManager;
 	private float timeSinceLastSpawn = 0f;
-	private float sessionStart = 0f;
+    private float sessionStart = 0f;
 
     void Start ()
     {        
         foreground = GameObject.Find("Foreground");
 		Invoke ("SpawnNormal", spawnTime * 4.8f);
 		sessionStart = Time.time;
+        levelManager = foreground.GetComponent<LevelManager>();
     }
 
 	void Update() {
@@ -37,6 +39,7 @@ public class EnemyManager : MonoBehaviour
     void SpawnNether()
     {
         Spawn(true);
+        levelManager.FirstNetherSpawn();
     }
 
     void SpawnNormal()

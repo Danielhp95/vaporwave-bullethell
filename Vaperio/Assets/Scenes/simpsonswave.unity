@@ -2791,9 +2791,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2146284579}
-  m_Text: 'arrow keys or WASD: move
-
-    spacebar / k: shoot'
+  m_Text: 
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1

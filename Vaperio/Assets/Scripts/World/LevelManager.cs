@@ -25,7 +25,7 @@ public class LevelManager : MonoBehaviour
 
     private void ShowWorldToggleInstruction()
     {
-        instructionText.text = toggleWorldInstruction;
+        //instructionText.text = toggleWorldInstruction;
     }
 
     private void HideWorldToggleInstruction()

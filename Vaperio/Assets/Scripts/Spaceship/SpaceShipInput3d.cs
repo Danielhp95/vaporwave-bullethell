@@ -59,7 +59,7 @@ public class SpaceShipInput3d : MonoBehaviour {
 	}
 
 	private void applyPastInputs() {
-		Vector2 pastInput = pastInputs[lagCount-lagIndex];
+		Vector2 pastInput = pastInputs[(lagIndex + 1) % lagDuration];
 
 		Vector3 force = new Vector3 (pastInput.x * horizontalForce, pastInput.y * verticalForce * -1f);
 
@@ -69,9 +69,9 @@ public class SpaceShipInput3d : MonoBehaviour {
 
 	}
 
-	private void setDrag () {
-		float speed = spaceshipBody.velocity.magnitude;
-		spaceshipBody.drag = Mathf.Max (Mathf.Pow (speed, 2f), 0.5f);
+	    private void setDrag () {
+		    float speed = spaceshipBody.velocity.magnitude;
+		    spaceshipBody.drag = Mathf.Max (Mathf.Pow (speed, 2f), 0.5f);
 	}   
     
 	private void StopShip() {
